@@ -1,0 +1,26 @@
+#
+# Generate README.md for ACESLooks directory, run from aces-looks root dir.
+#
+#!/bin/sh
+set -e
+
+cd ACESLooks/
+cp README.md README.md.old
+rm -f README.md
+
+clfs=`ls CLF/*.clf`
+
+echo "# Available LMTs" >> README.md
+
+for i in $clfs
+do
+  echo "" >> README.md
+  echo "## $i" >> README.md
+  echo "" >> README.md
+
+  echo "\`\`\`" >> README.md
+  ../util/bin/clfutil info $i >> README.md
+  echo "\`\`\`" >> README.md
+done
+
+rm -f README.md.old
