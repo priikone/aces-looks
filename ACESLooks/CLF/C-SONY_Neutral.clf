@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<ProcessList xmlns="urn:NATAS:AMPAS:LUT:v3.0" id="SONY Look" name="SONY Look" compCLFversion="3.0">
+<ProcessList xmlns="urn:AMPAS:CLF:v3.0" id="SONY Look" name="SONY Look" compCLFversion="3.0">
     <Description>This LMT approximates a neutral look of the SONY S-Gamut3.Cine DRT when used with ACES 1.3. It is a very simple LMT and uses only a tone-curve and a 3x3 matrix to achieve the look.</Description>
     <InputDescriptor>ACES2065-1 AP0 [full dynamic range]</InputDescriptor>
     <OutputDescriptor>ACES2065-1 AP0 [full dynamic range]</OutputDescriptor>
