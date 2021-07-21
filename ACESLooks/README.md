@@ -99,7 +99,7 @@
 
 ```
            Name: ACESLooks LMT - ARRI Classic Tone-curve Look
-    Description: This LMT emulates the tonal appearance of the ARRI ALF-2 DRT when used with ACES 1.3. It does not change colorimetry.
+    Description: This LMT emulates the tonal appearance of the ARRI K1S1 DRT when used with ACES 1.3. It does not change colorimetry.
        Revision: 1.3-1
           Input: ACES2065-1 AP0 [full dynamic range]
           Range: Clamp to 0-65504
