@@ -1,0 +1,312 @@
+set cut_paste_input [stack 0]
+version 13.0 v1
+push $cut_paste_input
+Group {
+ name Tetra_HSV3
+ selected true
+ xpos 572
+ ypos 190
+ addUserKnob {20 User}
+ addUserKnob {41 mask_sel l Mask T Tetra_HSV.mask_sel}
+ addUserKnob {41 show_mask l "Show Mask" -STARTLINE T Tetra_HSV.show_mask}
+ addUserKnob {41 maskChannelMask_1 l "" +STARTLINE T Tetra_HSV.maskChannelMask_1}
+ addUserKnob {41 lut l "" +STARTLINE T Tetra_HSV.lut}
+ addUserKnob {41 disable_1 l Disable T Tetra_HSV.disable_1}
+ addUserKnob {41 blk l Black T Tetra_HSV.blk}
+ addUserKnob {41 wht l White T Tetra_HSV.wht}
+ addUserKnob {26 ""}
+ addUserKnob {41 redhue l "Red Hue" T Tetra_HSV.redhue}
+ addUserKnob {41 redsat l "Red Sat" T Tetra_HSV.redsat}
+ addUserKnob {41 redval l "Red Val" T Tetra_HSV.redval}
+ addUserKnob {41 greenhue l "Green Hue" T Tetra_HSV.greenhue}
+ addUserKnob {41 greensat l "Green Sat" T Tetra_HSV.greensat}
+ addUserKnob {41 greenval l "Green Val" T Tetra_HSV.greenval}
+ addUserKnob {41 bluehue l "Blue Hue" T Tetra_HSV.bluehue}
+ addUserKnob {41 bluesat l "Blue Sat" T Tetra_HSV.bluesat}
+ addUserKnob {41 blueval l "Blue Val" T Tetra_HSV.blueval}
+ addUserKnob {41 cyanhue l "Cyan Hue" T Tetra_HSV.cyanhue}
+ addUserKnob {41 cyansat l "Cyan Sat" T Tetra_HSV.cyansat}
+ addUserKnob {41 cyanval l "Cyan Val" T Tetra_HSV.cyanval}
+ addUserKnob {41 maghue l "Magenta Hue" T Tetra_HSV.maghue}
+ addUserKnob {41 magsat l "Magenta Sat" T Tetra_HSV.magsat}
+ addUserKnob {41 magval l "Magenta Val" T Tetra_HSV.magval}
+ addUserKnob {41 yelhue l "Yellow Hue" T Tetra_HSV.yelhue}
+ addUserKnob {41 yelsat l "Yellow Sat" T Tetra_HSV.yelsat}
+ addUserKnob {41 yelval l "Yellow Val" T Tetra_HSV.yelval}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 0
+ }
+ Dot {
+  name Dot7
+  xpos 34
+  ypos 102
+ }
+set N33eca000 [stack 0]
+ Dot {
+  name Dot34
+  xpos -102
+  ypos 102
+ }
+ Group {
+  name Tetra_HSV_Mask
+  xpos -136
+  ypos 144
+  addUserKnob {20 User}
+  addUserKnob {41 MaskSelect l "Mask Select" T Mask_Select.which}
+  addUserKnob {41 lut l "" +STARTLINE T Masks.lut}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+   ypos -4
+  }
+  Expression {
+   temp_name0 cmax
+   temp_expr0 max(r,g,b)
+   temp_name1 cmin
+   temp_expr1 min(r,g,b)
+   temp_name2 delta
+   temp_expr2 cmax-cmin
+   expr0 "delta==0?0:cmax==r?(((g-b)/delta+6)%6)/6:cmax==g?(((b-r)/delta+2)/6):(((r-g)/delta+4)/6)\n"
+   expr1 "cmax == 0 ? 0 : min(1, max(0, delta / cmax))"
+   expr2 "min(1, max(0, cmax))"
+   name RGB_to_HSV
+   xpos 0
+   ypos 39
+  }
+  ColorLookup {
+   name Masks
+   xpos 0
+   ypos 74
+  }
+  Dot {
+   name Dot7
+   selected true
+   xpos 34
+   ypos 117
+  }
+set N33ec8c00 [stack 0]
+  Dot {
+   name Dot8
+   selected true
+   xpos 121
+   ypos 117
+  }
+set N33ec8800 [stack 0]
+  Dot {
+   name Dot2
+   selected true
+   xpos 219
+   ypos 117
+  }
+  Expression {
+   expr3 "b < 0 ? 0 : g < 0 ? 0 : b * g"
+   maskChannelMask -rgba.alpha
+   name Mult_S_V
+   selected true
+   xpos 185
+   ypos 164
+  }
+  Dot {
+   name Dot5
+   selected true
+   xpos 219
+   ypos 252
+  }
+push $N33ec8c00
+  Shuffle2 {
+   fromInput1 {{0} B}
+   out1 alpha
+   fromInput2 {{0} B}
+   mappings "1 rgba.green 0 1 rgba.alpha 0 0"
+   name S_to_A2
+   selected true
+   xpos 0
+   ypos 164
+  }
+push $N33ec8800
+  Shuffle2 {
+   fromInput1 {{0} B}
+   out1 alpha
+   fromInput2 {{0} B}
+   mappings "1 rgba.blue 0 2 rgba.alpha 0 0"
+   name V_to_A2
+   selected true
+   xpos 87
+   ypos 164
+  }
+  Merge2 {
+   inputs 2
+   operation screen
+   Achannels alpha
+   Bchannels alpha
+   output alpha
+   name Merge
+   selected true
+   xpos 45
+   ypos 200
+  }
+push $N33ec8c00
+  Dot {
+   name Dot3
+   selected true
+   xpos -64
+   ypos 117
+  }
+set Nf56f2800 [stack 0]
+  Shuffle2 {
+   fromInput1 {{0} B}
+   out1 alpha
+   fromInput2 {{0} B}
+   mappings "1 rgba.blue 0 2 rgba.alpha 0 0"
+   name V_to_A1
+   selected true
+   xpos -98
+   ypos 164
+  }
+push $Nf56f2800
+  Dot {
+   name Dot4
+   selected true
+   xpos -154
+   ypos 117
+  }
+  Shuffle2 {
+   fromInput1 {{0} B}
+   out1 alpha
+   fromInput2 {{0} B}
+   mappings "1 rgba.green 0 1 rgba.alpha 0 0"
+   name S_to_A1
+   selected true
+   xpos -188
+   ypos 164
+  }
+  Switch {
+   inputs 4
+   which {{parent.parent.Tetra_HSV.mask_sel}}
+   name Mask_Select
+   selected true
+   xpos -98
+   ypos 249
+  }
+  Dot {
+   name Dot10
+   xpos -64
+   ypos 301
+  }
+  Output {
+   name Output
+   label "\n"
+   xpos 0
+   ypos 298
+  }
+ end_group
+ Dot {
+  name Dot14
+  xpos -102
+  ypos 191
+ }
+set Nf56f0c00 [stack 0]
+push $Nf56f0c00
+push $N33eca000
+ Expression {
+  inputs 1+1
+  temp_name0 tetra
+  temp_expr0 "(  (b>g) ? r*(wht.r-cyn.r) + g*(cyn.r-blu.r) + b*(blu.r-blk.r)+blk.r : ( (b>r) ? r*(wht.r-cyn.r) + g*(grn.r-blk.r)+blk.r + b*(cyn.r-grn.r) : r*(yel.r-grn.r) + g*(grn.r-blk.r)+blk.r + b*(wht.r-yel.r) ) )\n"
+  temp_name1 tetra02
+  temp_expr1 "(  (b>g) ? r*(wht.g-cyn.g) + g*(cyn.g-blu.g) + b*(blu.g-blk.g)+blk.g : ( (b>r) ? r*(wht.g-cyn.g) + g*(grn.g-blk.g)+blk.g + b*(cyn.g-grn.g) : r*(yel.g-grn.g) + g*(grn.g-blk.g)+blk.g + b*(wht.g-yel.g) ) )\n"
+  temp_name2 tetra03
+  temp_expr2 "(  (b>g) ? r*(wht.b-cyn.b) + g*(cyn.b-blu.b) + b*(blu.b-blk.b)+blk.b : ( (b>r) ? r*(wht.b-cyn.b) + g*(grn.b-blk.b)+blk.b + b*(cyn.b-grn.b) : r*(yel.b-grn.b) + g*(grn.b-blk.b)+blk.b + b*(wht.b-yel.b) ) )"
+  channel0 {rgba.red -rgba.green -rgba.blue none}
+  expr0 "(r>g) ? ( (g>b) ? r*(red.r-blk.r)+blk.r + g*(yel.r-red.r) + b*(wht.r-yel.r) : ( (r>b) ? r*(red.r-blk.r)+blk.r + g*(wht.r-mag.r) + b*(mag.r-red.r) : r*(mag.r-blu.r) + g*(wht.r-mag.r) + b*(blu.r-blk.r)+blk.r ) ) : tetra\n"
+  channel1 {-rgba.red rgba.green -rgba.blue none}
+  expr1 "(r>g) ? ( (g>b) ? r*(red.g-blk.g)+blk.g + g*(yel.g-red.g) + b*(wht.g-yel.g) : ( (r>b) ? r*(red.g-blk.g)+blk.g + g*(wht.g-mag.g) + b*(mag.g-red.g) : r*(mag.g-blu.g) + g*(wht.g-mag.g) + b*(blu.g-blk.g)+blk.g ) ) : tetra02\n"
+  channel2 {-rgba.red -rgba.green rgba.blue none}
+  expr2 "(r>g) ? ( (g>b) ? r*(red.b-blk.b)+blk.b + g*(yel.b-red.b) + b*(wht.b-yel.b) : ( (r>b) ? r*(red.b-blk.b)+blk.b + g*(wht.b-mag.b) + b*(mag.b-red.b) : r*(mag.b-blu.b) + g*(wht.b-mag.b) + b*(blu.b-blk.b)+blk.b ) ) : tetra03\n"
+  maskChannelMask -rgba.alpha
+  name Tetra_HSV
+  xpos 0
+  ypos 188
+  disable {{disable_1 x439 1}}
+  addUserKnob {20 User}
+  addUserKnob {4 mask_sel l Mask M {"Saturation (green channel)" "Luminance (blue channel)" "Luminance and Saturation" "Luminance then Saturation" "" ""}}
+  addUserKnob {6 show_mask l "Show Mask" t "Show Mask (in alpha channel)" -STARTLINE}
+  addUserKnob {41 maskChannelMask_1 l "" +STARTLINE T Tetra_HSV.maskChannelMask}
+  addUserKnob {41 lut l "" +STARTLINE T Tetra_HSV_Mask.lut}
+  addUserKnob {6 disable_1 l Disable +STARTLINE}
+  addUserKnob {18 blk l Black}
+  blk {0 0 0}
+  addUserKnob {6 blk_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_panelDropped l "panel dropped state" +HIDDEN +STARTLINE}
+  addUserKnob {18 wht l White}
+  wht {1 1 1}
+  addUserKnob {6 wht_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_1_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {7 redhue l "Red Hue" R -1 1}
+  addUserKnob {7 redsat l "Red Sat" R -1 1}
+  addUserKnob {7 redval l "Red Val" R 0 2}
+  redval 1
+  addUserKnob {7 greenhue l "Green Hue" R -1 1}
+  addUserKnob {7 greensat l "Green Sat" R -1 1}
+  addUserKnob {7 greenval l "Green Val" R 0 2}
+  greenval 1
+  addUserKnob {7 bluehue l "Blue Hue" R -1 1}
+  addUserKnob {7 bluesat l "Blue Sat" R -1 1}
+  addUserKnob {7 blueval l "Blue Val" R 0 2}
+  blueval 1
+  addUserKnob {7 cyanhue l "Cyan Hue" R -1 1}
+  addUserKnob {7 cyansat l "Cyan Sat" R -1 1}
+  addUserKnob {7 cyanval l "Cyan Val" R 0 2}
+  cyanval 1
+  addUserKnob {7 maghue l "Magenta Hue" R -1 1}
+  addUserKnob {7 magsat l "Magenta Sat" R -1 1}
+  addUserKnob {7 magval l "Magenta Val" R 0 2}
+  magval 1
+  addUserKnob {7 yelhue l "Yellow Hue" R -1 1}
+  addUserKnob {7 yelsat l "Yellow Sat" R -1 1}
+  addUserKnob {7 yelval l "Yellow Val" R 0 2}
+  yelval 1
+  addUserKnob {18 red l Red +INVISIBLE}
+  red {{redval} {"(redval - 1.0) - redsat"} {"(redval - 1.0) + redhue - redsat"}}
+  addUserKnob {6 red_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {18 grn l Green +INVISIBLE}
+  grn {{"(greenval - 1.0) - greensat"} {greenval} {"(greenval - 1.0) + greenhue - greensat"}}
+  addUserKnob {6 grn_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {18 blu l Blue +INVISIBLE}
+  blu {{"(blueval - 1.0) + bluehue - bluesat"} {"(blueval - 1.0) - bluesat"} {blueval}}
+  addUserKnob {6 blu_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_2_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {18 cyn l Cyan +INVISIBLE}
+  cyn {{"(cyanval - 1.0) - cyansat"} {"cyanval + cyanhue"} {cyanval}}
+  addUserKnob {6 cyn_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_3_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {18 mag l Magenta +INVISIBLE}
+  mag {{magval} {"(magval - 1.0) - magsat"} {"magval + maghue"}}
+  addUserKnob {6 mag_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_4_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {18 yel l Yellow +INVISIBLE}
+  yel {{"yelval + yelhue"} {yelval} {"(yelval - 1.0) - yelsat"}}
+  addUserKnob {6 yel_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_5_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {20 Info}
+  addUserKnob {26 info l "" +STARTLINE T "<pre><left>Color transformations using tetrahedral division of a cube in HSV model.\n\nBy Pekka Riikonen\n(derived from silly calvin's original Tetra nuke expression node)"}
+ }
+ Switch {
+  inputs 2
+  which {{parent.Tetra_HSV.show_mask}}
+  name Show_Mask
+  selected true
+  xpos 0
+  ypos 267
+ }
+ Output {
+  name Output1
+  xpos 0
+  ypos 300
+ }
+end_group

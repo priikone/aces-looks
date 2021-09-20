@@ -26,7 +26,7 @@ __version__ = '.'.join((__major_version__, __minor_version__,
                         __change_version__))
 
 __all__ = [
-    'clfprint', 'clf2dctl', 'main'
+    'clfprint', 'clf2dctl', 'clf2ocio', 'main'
 ]
 
 def clfprint(filename):
@@ -92,9 +92,43 @@ def clfprint(filename):
             break
 
     if odesc:
-        buf += "%15s: %s" % ('Output', idesc)
+        buf += "%15s: %s" % ('Output', odesc)
 
     buf += "\n"
+    return buf
+
+
+def clf2ocio(filename):
+    """
+    Print OCIO config Look entry from the CLF file and return it.
+    """
+
+    tree = et.parse(filename)
+    root = tree.getroot()
+
+    filename = os.path.basename(filename)
+    buf = '    - !<Look>\n'
+    name = root.attrib['name'] if 'name' in root.attrib else ''
+    acesname = ''
+
+    # Parse the general information before printing, stripping out
+    # the namespace which ET always includes in the tag.
+    for child in root:
+        tag = re.sub(r'^{.*}', '', child.tag)
+        if tag == 'Info':
+            for sub in child:
+                stag = re.sub(r'^{.*}', '', sub.tag)
+                if stag == 'ACESuserName':
+                    acesname = sub.text
+
+    if acesname:
+        buf += "      %s: %s\n" % ('name', acesname)
+    elif name:
+        buf += "      %s: %s\n" % ('name', name)
+
+    buf += '      process_space: ACES - ACES2065-1\n'
+    buf += '      transform: !<FileTransform> {src: ACESLooks/CLF/%s}\n' % filename
+
     return buf
 
 
@@ -156,7 +190,7 @@ def clf2dctl(filename, lut_scaling=False):
                         name = "%s_%s_%d.cube" % (fname, tag, num_1d)
                     else:
                         name = "%s_%s.cube" % (fname, tag)
-                    buf += "DEFINE_LUT(%s%d" % (tag, num_1d) + ', ../LUT/%s)\n' % name
+                    buf += "DEFINE_LUT(%s%d" % (tag, num_1d) + ', ../ACEScct_LUT/%s)\n' % name
                     num_1d += 1
                 else:
                     lutbuf += "LUT_3D_SIZE %s\n" % size
@@ -168,7 +202,7 @@ def clf2dctl(filename, lut_scaling=False):
                         name = "%s_%s_%d.cube" % (fname, tag, num_3d)
                     else:
                         name = "%s_%s.cube" % (fname, tag)
-                    buf += "DEFINE_LUT(%s%d" % (tag, num_3d) + ', ../LUT/%s)\n' % name
+                    buf += "DEFINE_LUT(%s%d" % (tag, num_3d) + ', ../ACEScct_LUT/%s)\n' % name
                     num_3d += 1
 
                 if dim == '3' or tag == 'LUT3D':
@@ -176,6 +210,7 @@ def clf2dctl(filename, lut_scaling=False):
                 else:
                     f = io.StringIO(sub.text)
                     for line in f:
+                        line = re.sub(r'\t', ' ', line)
                         line = re.sub(r'\n', '', line)
                         lutbuf += "%s %s %s\n" % (line, line, line)
 
@@ -191,7 +226,7 @@ def clf2dctl(filename, lut_scaling=False):
 "  float3 rgb = make_float3(p_R, p_G, p_B);\n\n")
 
     # Generate the code (NOTE: full CLF spec not supported as of yet)
-    min_in = max_in = min_out = max_out = 0
+    min_in = max_in = min_out = max_out = 0.0
     num_1d = 0
     num_3d = 0
     for child in root:
@@ -279,7 +314,7 @@ def main():
         description='',
         prog='clfutil',
         version='0.1.0',
-        usage='clfutil [options] [info|dctl] <clf-file>')
+        usage='clfutil [options] [info|dctl|ocio] <clf-file>')
 
     p.add_option('--lut-scaling', '-s', nargs=0, default=False)
 
@@ -298,6 +333,9 @@ def main():
 
     if cmd == 'info':
         buf = clfprint(filename)
+        print(buf, end = "")
+    elif cmd == 'ocio':
+        buf = clf2ocio(filename)
         print(buf, end = "")
     elif cmd == 'dctl':
         clf2dctl(filename, options.lut_scaling)

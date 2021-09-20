@@ -4,12 +4,14 @@
     Description: This LMT emulates the tonal appearance of the ARRI ALF-2 DRT when used with ACES 1.3. It does not change colorimetry.
        Revision: 1.3-1
           Input: ACES2065-1 AP0 [full dynamic range]
-          Range: Clamp to 0-65504
+         Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
+          Range: Clamp to max 65504
             Log: Convert linear to ACEScct log
           Range: Scale full ACEScct log range to 0-1 range
           LUT1D: Approximate ARRI ALF-2 tone curve with full ACEScct output
             Log: Convert ACEScct log to linear
-          Range: Clamp to 0-65504
+         Matrix: Convert ACEScg (AP1) to ACES2065-1 (AP0)
+          Range: Clamp to max 65504
          Output: ACES2065-1 AP0 [full dynamic range]
 */
 
@@ -65,16 +67,18 @@ __DEVICE__ float3 range(float3 rgb, float min_in, float max_in, float min_out, f
   return rgb;
 }
 
-DEFINE_LUT(LUT1D0, ../LUT/T-ARRI_Tone.cube)
+DEFINE_LUT(LUT1D0, ../ACEScct_LUT/T-ARRI_Tone.cube)
 
 __DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B)
 {
   float3 rgb = make_float3(p_R, p_G, p_B);
 
+  rgb = mult_f3_f33(rgb, make_float3x3(make_float3(1.45143931614566579f, -0.23651074689374021f, -0.21492856925192538f), make_float3(-0.07655377339602076f, 1.17622969983357284f, -0.09967592643755215f), make_float3(0.00831614842569772f, -0.00603244979102103f, 0.99771630136532330f)));
   rgb = range(rgb, 0.0f, 65504.0f, 0.0f, 65504.0f, 1);
   rgb = lin2ACEScct(rgb);
   rgb = APPLY_LUT(rgb.x, rgb.y, rgb.z, LUT1D0);
   rgb = ACEScct2lin(rgb);
+  rgb = mult_f3_f33(rgb, make_float3x3(make_float3(0.69545224135745165f, 0.14067869647029416f, 0.16386906217225405f), make_float3(0.04479456337203777f, 0.85967111845642186f, 0.09553431817154040f), make_float3(-0.00552588255811354f, 0.00402521030597866f, 1.00150067225213490f)));
   rgb = range(rgb, 0.0f, 65504.0f, 0.0f, 65504.0f, 1);
 
   return rgb;

@@ -1,0 +1,66 @@
+looks:
+    - !<Look>
+      name: ACESLooks LMT - ARRI ALF-2 Colorimetric LMT
+      process_space: ACES - ACES2065-1
+      transform: !<FileTransform> {src: ACESLooks/CLF/C-ARRI.clf}
+
+    - !<Look>
+      name: ACESLooks LMT - ARRI K1S1 Colorimetric LMT
+      process_space: ACES - ACES2065-1
+      transform: !<FileTransform> {src: ACESLooks/CLF/C-ARRI_Classic.clf}
+
+    - !<Look>
+      name: ACESLooks LMT - RED IPP2 Colorimetric LMT
+      process_space: ACES - ACES2065-1
+      transform: !<FileTransform> {src: ACESLooks/CLF/C-RED.clf}
+
+    - !<Look>
+      name: ACESLooks LMT - SONY S-Gamut3.Cine Colorimetric LMT
+      process_space: ACES - ACES2065-1
+      transform: !<FileTransform> {src: ACESLooks/CLF/C-SONY.clf}
+
+    - !<Look>
+      name: ACESLooks LMT - ARRI ALF-2 Look
+      process_space: ACES - ACES2065-1
+      transform: !<FileTransform> {src: ACESLooks/CLF/M-ARRI.clf}
+
+    - !<Look>
+      name: ACESLooks LMT - ARRI K1S1 Look
+      process_space: ACES - ACES2065-1
+      transform: !<FileTransform> {src: ACESLooks/CLF/M-ARRI_Classic.clf}
+
+    - !<Look>
+      name: ACESLooks LMT - RED IPP2 Look
+      process_space: ACES - ACES2065-1
+      transform: !<FileTransform> {src: ACESLooks/CLF/M-RED.clf}
+
+    - !<Look>
+      name: ACESLooks LMT - SONY S-Gamut3.Cine Look
+      process_space: ACES - ACES2065-1
+      transform: !<FileTransform> {src: ACESLooks/CLF/M-SONY.clf}
+
+    - !<Look>
+      name: ACESLooks LMT - ARRI Classic Tone-curve Look
+      process_space: ACES - ACES2065-1
+      transform: !<FileTransform> {src: ACESLooks/CLF/T-ARRI_Classic_Tone.clf}
+
+    - !<Look>
+      name: ACESLooks LMT - ARRI Tone-curve Look
+      process_space: ACES - ACES2065-1
+      transform: !<FileTransform> {src: ACESLooks/CLF/T-ARRI_Tone.clf}
+
+    - !<Look>
+      name: ACESLooks LMT - RED Tone-curve Look
+      process_space: ACES - ACES2065-1
+      transform: !<FileTransform> {src: ACESLooks/CLF/T-RED_Tone.clf}
+
+    - !<Look>
+      name: ACESLooks LMT - SONY Neutral Tone-curve Look
+      process_space: ACES - ACES2065-1
+      transform: !<FileTransform> {src: ACESLooks/CLF/T-SONY_Neutral_Tone.clf}
+
+    - !<Look>
+      name: ACESLooks LMT - SONY Tone-curve Look
+      process_space: ACES - ACES2065-1
+      transform: !<FileTransform> {src: ACESLooks/CLF/T-SONY_Tone.clf}
+

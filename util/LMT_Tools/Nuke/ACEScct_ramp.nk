@@ -1,0 +1,17 @@
+set cut_paste_input [stack 0]
+version 13.0 v1
+push $cut_paste_input
+Expression {
+ channel0 rgba
+ expr0 "x / (width - 1) * (cct_max - cct_min) + cct_min"
+ name ACEScct_ramp
+ selected true
+ xpos 701
+ ypos 24
+ hide_input true
+ postage_stamp true
+ addUserKnob {20 User}
+ addUserKnob {7 cct_min l "ACEScct min" R -0.5 0.5}
+ addUserKnob {7 cct_max l "ACEScct max" R 0.5 1.4679964}
+ cct_max 1.4679964
+}

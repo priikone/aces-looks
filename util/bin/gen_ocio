@@ -1,0 +1,21 @@
+#
+# Generate OCIO v2 Look config from CLFs. Run from aces-looks root dir.
+#
+#!/bin/sh
+set -e
+
+clfs=`ls ACESLooks/CLF/*.clf`
+
+cd OCIO
+cp config.ocio config.ocio.old
+rm -f config.ocio
+
+echo "looks:" >> config.ocio
+
+for i in $clfs
+do
+  ../util/bin/clfutil ocio ../$i >> config.ocio
+  echo "" >> config.ocio
+done
+
+rm -f config.ocio.old

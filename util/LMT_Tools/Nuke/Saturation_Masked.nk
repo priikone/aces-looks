@@ -1,0 +1,241 @@
+set cut_paste_input [stack 0]
+version 13.0 v1
+push $cut_paste_input
+Group {
+ name Sat
+ selected true
+ xpos 1299
+ ypos 77
+ addUserKnob {20 User}
+ addUserKnob {41 m l method T Sat.m}
+ addUserKnob {6 disable_sat l Disable -STARTLINE}
+ addUserKnob {41 s l saturation T Sat.s}
+ addUserKnob {26 ""}
+ addUserKnob {41 mask_sel l Mask T Sat.mask_sel}
+ addUserKnob {6 show_mask l "Show Mask" t "Show Mask (in alpha channel)" -STARTLINE}
+ addUserKnob {41 maskChannelMask l "" +STARTLINE T Sat.maskChannelMask}
+ addUserKnob {41 lut l "" +STARTLINE T Sat_Mask.lut}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 0
+ }
+ Dot {
+  name Dot20
+  xpos 33
+  ypos 125
+ }
+set Nccd76c00 [stack 0]
+ Group {
+  name Sat_Mask
+  xpos -144
+  ypos 122
+  addUserKnob {20 User}
+  addUserKnob {41 MaskSelect l "Mask Select" T Mask_Select.which}
+  addUserKnob {41 lut l "" +STARTLINE T Masks.lut}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+  }
+  Expression {
+   temp_name0 cmax
+   temp_expr0 max(r,g,b)
+   temp_name1 cmin
+   temp_expr1 min(r,g,b)
+   temp_name2 delta
+   temp_expr2 cmax-cmin
+   expr0 "delta==0?0:cmax==r?(((g-b)/delta+6)%6)/6:cmax==g?(((b-r)/delta+2)/6):(((r-g)/delta+4)/6)\n"
+   expr1 "cmax == 0 ? 0 : min(1, max(0, delta / cmax))"
+   expr2 "min(1, max(0, cmax))"
+   name RGB_to_HSV
+   xpos 0
+   ypos 44
+  }
+  ColorLookup {
+   name Masks
+   xpos 0
+   ypos 78
+  }
+  Dot {
+   name Dot8
+   xpos 34
+   ypos 122
+  }
+set Nccd75c00 [stack 0]
+  Dot {
+   name Dot2
+   xpos 132
+   ypos 122
+  }
+  Expression {
+   expr3 "b < 0 ? 0 : g < 0 ? 0 : b * g"
+   maskChannelMask -rgba.alpha
+   name Mult_S_V
+   xpos 98
+   ypos 169
+  }
+  Dot {
+   name Dot5
+   xpos 132
+   ypos 257
+  }
+push $Nccd75c00
+  Dot {
+   name Dot7
+   xpos -53
+   ypos 122
+  }
+set Nccd74c00 [stack 0]
+  Shuffle2 {
+   fromInput1 {{0} B}
+   out1 alpha
+   fromInput2 {{0} B}
+   mappings "1 rgba.green 0 1 rgba.alpha 0 0"
+   name S_to_A2
+   xpos -87
+   ypos 169
+  }
+push $Nccd75c00
+  Shuffle2 {
+   fromInput1 {{0} B}
+   out1 alpha
+   fromInput2 {{0} B}
+   mappings "1 rgba.blue 0 2 rgba.alpha 0 0"
+   name V_to_A2
+   xpos 0
+   ypos 169
+  }
+  Merge2 {
+   inputs 2
+   operation screen
+   Achannels alpha
+   Bchannels alpha
+   output alpha
+   name Merge
+   xpos -42
+   ypos 205
+  }
+push $Nccd74c00
+  Dot {
+   name Dot3
+   xpos -151
+   ypos 122
+  }
+set Nc993f800 [stack 0]
+  Shuffle2 {
+   fromInput1 {{0} B}
+   out1 alpha
+   fromInput2 {{0} B}
+   mappings "1 rgba.blue 0 2 rgba.alpha 0 0"
+   name V_to_A1
+   xpos -185
+   ypos 169
+  }
+push $Nc993f800
+  Dot {
+   name Dot4
+   xpos -241
+   ypos 122
+  }
+  Shuffle2 {
+   fromInput1 {{0} B}
+   out1 alpha
+   fromInput2 {{0} B}
+   mappings "1 rgba.green 0 1 rgba.alpha 0 0"
+   name S_to_A1
+   xpos -275
+   ypos 169
+  }
+  Switch {
+   inputs 4
+   which {{parent.parent.Sat.mask_sel}}
+   name Mask_Select
+   xpos -185
+   ypos 254
+  }
+  Dot {
+   name Dot10
+   xpos -151
+   ypos 303
+  }
+  Output {
+   name Output
+   label "\n"
+   xpos 0
+   ypos 300
+  }
+ end_group
+ Dot {
+  name Dot21
+  xpos -110
+  ypos 169
+ }
+set Nc993dc00 [stack 0]
+push $Nc993dc00
+push $Nccd76c00
+ Group {
+  inputs 2
+  name Sat
+  xpos 0
+  ypos 166
+  disable {{parent.disable_sat}}
+  addUserKnob {20 Saturation_tab l Saturation}
+  addUserKnob {4 m l method M {weighted maximum average}}
+  addUserKnob {4 gamut t "If using weighted m, select gamut for appropriate luminance weights." -STARTLINE M {ACEScg Rec.2020 P3D65 Rec.709}}
+  addUserKnob {7 s l saturation R 0 3}
+  s 1
+  addUserKnob {4 mask_sel l Mask M {"Saturation (green channel)" "Luminance (blue channel)" "Luminance and Saturation" "Luminance then Saturation" "" ""}}
+  addUserKnob {41 maskChannelMask l "" +STARTLINE T Expression.maskChannelMask}
+ }
+  Input {
+   inputs 0
+   name mask
+   xpos 400
+   ypos 681
+   number 1
+  }
+  Input {
+   inputs 0
+   name Input
+   xpos 290
+   ypos 620
+  }
+  Expression {
+   inputs 1+1
+   temp_name3 L
+   temp_expr3 m==0?w.0*r+w.1*g+w.2*b:m==1?max(r,g,b):m==2?(r+g+b)/3:0
+   expr0 L*(1-s)+r*s
+   expr1 L*(1-s)+g*s
+   expr2 L*(1-s)+b*s
+   channel3 {none none none -rgba.alpha}
+   maskChannelMask -rgba.alpha
+   name Expression
+   xpos 290
+   ypos 681
+   addUserKnob {20 Params}
+   addUserKnob {78 w l weights t "luminance weights for selected gamut" -STARTLINE n 3}
+   w {{curve(gamut) 0.272229 0.2627 0.228975 0.212639} {curve(gamut) 0.674082 0.677998 0.691739 0.715169} {curve(gamut) 0.0536895 0.0593017 0.0792869 0.0721923}}
+  }
+  Output {
+   name Output
+   xpos 290
+   ypos 740
+  }
+ end_group
+ Switch {
+  inputs 2
+  which {{parent.show_mask}}
+  name Show_Mask
+  selected true
+  xpos 0
+  ypos 237
+ }
+ Output {
+  name Output1
+  xpos 0
+  ypos 300
+ }
+end_group

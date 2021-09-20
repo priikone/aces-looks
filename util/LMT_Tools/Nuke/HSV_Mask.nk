@@ -1,0 +1,148 @@
+set cut_paste_input [stack 0]
+version 13.0 v1
+push $cut_paste_input
+Group {
+ name HSV_Mask2
+ selected true
+ xpos 1427
+ ypos 42
+ addUserKnob {20 User}
+ addUserKnob {4 mask_sel l Mask M {"Saturation (green channel)" "Luminance (blue channel)" "Luminance and Saturation" "Luminance then Saturation"}}
+ addUserKnob {41 MaskSelect l "Mask Select" +INVISIBLE T Mask_Select.which}
+ addUserKnob {41 lut l "" +STARTLINE T Masks.lut}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 0
+  ypos -4
+ }
+ Expression {
+  temp_name0 cmax
+  temp_expr0 max(r,g,b)
+  temp_name1 cmin
+  temp_expr1 min(r,g,b)
+  temp_name2 delta
+  temp_expr2 cmax-cmin
+  expr0 "delta==0?0:cmax==r?(((g-b)/delta+6)%6)/6:cmax==g?(((b-r)/delta+2)/6):(((r-g)/delta+4)/6)\n"
+  expr1 "cmax == 0 ? 0 : min(1, max(0, delta / cmax))"
+  expr2 "min(1, max(0, cmax))"
+  name RGB_to_HSV
+  xpos 0
+  ypos 39
+ }
+ ColorLookup {
+  name Masks
+  xpos 0
+  ypos 74
+ }
+ Dot {
+  name Dot7
+  xpos 34
+  ypos 117
+ }
+set Ne122b000 [stack 0]
+ Dot {
+  name Dot8
+  xpos 121
+  ypos 117
+ }
+set Ne122ac00 [stack 0]
+ Dot {
+  name Dot2
+  xpos 219
+  ypos 117
+ }
+ Expression {
+  expr3 "b < 0 ? 0 : g < 0 ? 0 : b * g"
+  maskChannelMask -rgba.alpha
+  name Mult_S_V
+  selected true
+  xpos 185
+  ypos 164
+ }
+ Dot {
+  name Dot5
+  xpos 219
+  ypos 252
+ }
+push $Ne122b000
+ Shuffle2 {
+  fromInput1 {{0} B}
+  out1 alpha
+  fromInput2 {{0} B}
+  mappings "1 rgba.green 0 1 rgba.alpha 0 0"
+  name S_to_A2
+  xpos 0
+  ypos 164
+ }
+push $Ne122ac00
+ Shuffle2 {
+  fromInput1 {{0} B}
+  out1 alpha
+  fromInput2 {{0} B}
+  mappings "1 rgba.blue 0 2 rgba.alpha 0 0"
+  name V_to_A2
+  xpos 87
+  ypos 164
+ }
+ Merge2 {
+  inputs 2
+  operation screen
+  Achannels alpha
+  Bchannels alpha
+  output alpha
+  name Merge
+  xpos 45
+  ypos 200
+ }
+push $Ne122b000
+ Dot {
+  name Dot3
+  xpos -64
+  ypos 117
+ }
+set Ne1229000 [stack 0]
+ Shuffle2 {
+  fromInput1 {{0} B}
+  out1 alpha
+  fromInput2 {{0} B}
+  mappings "1 rgba.blue 0 2 rgba.alpha 0 0"
+  name V_to_A1
+  xpos -98
+  ypos 164
+ }
+push $Ne1229000
+ Dot {
+  name Dot4
+  xpos -154
+  ypos 117
+ }
+ Shuffle2 {
+  fromInput1 {{0} B}
+  out1 alpha
+  fromInput2 {{0} B}
+  mappings "1 rgba.green 0 1 rgba.alpha 0 0"
+  name S_to_A1
+  xpos -188
+  ypos 164
+ }
+ Switch {
+  inputs 4
+  which {{parent.mask_sel}}
+  name Mask_Select
+  xpos -98
+  ypos 249
+ }
+ Dot {
+  name Dot10
+  xpos -64
+  ypos 301
+ }
+ Output {
+  name Output
+  label "\n"
+  xpos 0
+  ypos 298
+ }
+end_group

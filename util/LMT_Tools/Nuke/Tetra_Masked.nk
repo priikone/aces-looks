@@ -1,0 +1,252 @@
+set cut_paste_input [stack 0]
+version 13.0 v1
+push $cut_paste_input
+Group {
+ name Tetra_RGB3
+ selected true
+ xpos 620
+ ypos 341
+ addUserKnob {20 User}
+ addUserKnob {4 mask_sel l Mask M {"Saturation (green channel)" "Luminance (blue channel)" "Luminance and Saturation" "Luminance then Saturation"}}
+ addUserKnob {6 show_mask l "Show Mask" t "Show Mask (in alpha channel)" -STARTLINE}
+ addUserKnob {41 maskChannelMask l "" +STARTLINE T Tetra.maskChannelMask}
+ addUserKnob {41 lut l "" +STARTLINE T Tetra_Mask.lut}
+ addUserKnob {6 disable_tetra l Disable +STARTLINE}
+ addUserKnob {41 blk l Black T Tetra.blk}
+ addUserKnob {41 wht l White T Tetra.wht}
+ addUserKnob {26 ""}
+ addUserKnob {41 red l Red T Tetra.red}
+ addUserKnob {41 grn l Green T Tetra.grn}
+ addUserKnob {41 blu l Blue T Tetra.blu}
+ addUserKnob {41 cyn l Cyan T Tetra.cyn}
+ addUserKnob {41 mag l Magenta T Tetra.mag}
+ addUserKnob {41 yel l Yellow T Tetra.yel}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 0
+ }
+ Dot {
+  name Dot10
+  xpos 34
+  ypos 122
+ }
+set Na2a96c00 [stack 0]
+ Group {
+  name Tetra_Mask
+  xpos -144
+  ypos 119
+  addUserKnob {20 User}
+  addUserKnob {41 MaskSelect l "Mask Select" T Mask_Select.which}
+  addUserKnob {41 lut l "" +STARTLINE T Masks.lut}
+ }
+  Input {
+   inputs 0
+   name Input1
+   xpos 0
+  }
+  Expression {
+   temp_name0 cmax
+   temp_expr0 max(r,g,b)
+   temp_name1 cmin
+   temp_expr1 min(r,g,b)
+   temp_name2 delta
+   temp_expr2 cmax-cmin
+   expr0 "delta==0?0:cmax==r?(((g-b)/delta+6)%6)/6:cmax==g?(((b-r)/delta+2)/6):(((r-g)/delta+4)/6)\n"
+   expr1 "cmax == 0 ? 0 : min(1, max(0, delta / cmax))"
+   expr2 "min(1, max(0, cmax))"
+   name RGB_to_HSV
+   xpos 0
+   ypos 44
+  }
+  ColorLookup {
+   name Masks
+   xpos 0
+   ypos 78
+  }
+  Dot {
+   name Dot8
+   xpos 34
+   ypos 123
+  }
+set Na2a95c00 [stack 0]
+  Dot {
+   name Dot2
+   xpos 132
+   ypos 123
+  }
+  Expression {
+   expr3 "b < 0 ? 0 : g < 0 ? 0 : b * g"
+   maskChannelMask -rgba.alpha
+   name Mult_S_V
+   xpos 98
+   ypos 170
+  }
+  Dot {
+   name Dot5
+   xpos 132
+   ypos 258
+  }
+push $Na2a95c00
+  Dot {
+   name Dot7
+   xpos -53
+   ypos 123
+  }
+set Na2a94c00 [stack 0]
+  Shuffle2 {
+   fromInput1 {{0} B}
+   out1 alpha
+   fromInput2 {{0} B}
+   mappings "1 rgba.green 0 1 rgba.alpha 0 0"
+   name S_to_A2
+   xpos -87
+   ypos 170
+  }
+push $Na2a95c00
+  Shuffle2 {
+   fromInput1 {{0} B}
+   out1 alpha
+   fromInput2 {{0} B}
+   mappings "1 rgba.blue 0 2 rgba.alpha 0 0"
+   name V_to_A2
+   xpos 0
+   ypos 170
+  }
+  Merge2 {
+   inputs 2
+   operation screen
+   Achannels alpha
+   Bchannels alpha
+   output alpha
+   name Merge
+   xpos -42
+   ypos 206
+  }
+push $Na2a94c00
+  Dot {
+   name Dot3
+   xpos -151
+   ypos 123
+  }
+set N95428c00 [stack 0]
+  Shuffle2 {
+   fromInput1 {{0} B}
+   out1 alpha
+   fromInput2 {{0} B}
+   mappings "1 rgba.blue 0 2 rgba.alpha 0 0"
+   name V_to_A1
+   xpos -185
+   ypos 170
+  }
+push $N95428c00
+  Dot {
+   name Dot4
+   xpos -241
+   ypos 123
+  }
+  Shuffle2 {
+   fromInput1 {{0} B}
+   out1 alpha
+   fromInput2 {{0} B}
+   mappings "1 rgba.green 0 1 rgba.alpha 0 0"
+   name S_to_A1
+   xpos -275
+   ypos 170
+  }
+  Switch {
+   inputs 4
+   which {{parent.parent.mask_sel}}
+   name Mask_Select
+   xpos -185
+   ypos 255
+  }
+  Dot {
+   name Dot10
+   xpos -151
+   ypos 303
+  }
+  Output {
+   name Output
+   label "\n"
+   xpos 0
+   ypos 300
+  }
+ end_group
+ Dot {
+  name Dot16
+  xpos -110
+  ypos 167
+ }
+set N77e18800 [stack 0]
+push $N77e18800
+push $Na2a96c00
+ Expression {
+  inputs 1+1
+  temp_name0 tetra
+  temp_expr0 "(  (b>g) ? r*(wht.r-cyn.r) + g*(cyn.r-blu.r) + b*(blu.r-blk.r)+blk.r : ( (b>r) ? r*(wht.r-cyn.r) + g*(grn.r-blk.r)+blk.r + b*(cyn.r-grn.r) : r*(yel.r-grn.r) + g*(grn.r-blk.r)+blk.r + b*(wht.r-yel.r) ) )\n"
+  temp_name1 tetra02
+  temp_expr1 "(  (b>g) ? r*(wht.g-cyn.g) + g*(cyn.g-blu.g) + b*(blu.g-blk.g)+blk.g : ( (b>r) ? r*(wht.g-cyn.g) + g*(grn.g-blk.g)+blk.g + b*(cyn.g-grn.g) : r*(yel.g-grn.g) + g*(grn.g-blk.g)+blk.g + b*(wht.g-yel.g) ) )\n"
+  temp_name2 tetra03
+  temp_expr2 "(  (b>g) ? r*(wht.b-cyn.b) + g*(cyn.b-blu.b) + b*(blu.b-blk.b)+blk.b : ( (b>r) ? r*(wht.b-cyn.b) + g*(grn.b-blk.b)+blk.b + b*(cyn.b-grn.b) : r*(yel.b-grn.b) + g*(grn.b-blk.b)+blk.b + b*(wht.b-yel.b) ) )"
+  channel0 {rgba.red -rgba.green -rgba.blue none}
+  expr0 "(r>g) ? ( (g>b) ? r*(red.r-blk.r)+blk.r + g*(yel.r-red.r) + b*(wht.r-yel.r) : ( (r>b) ? r*(red.r-blk.r)+blk.r + g*(wht.r-mag.r) + b*(mag.r-red.r) : r*(mag.r-blu.r) + g*(wht.r-mag.r) + b*(blu.r-blk.r)+blk.r ) ) : tetra\n"
+  channel1 {-rgba.red rgba.green -rgba.blue none}
+  expr1 "(r>g) ? ( (g>b) ? r*(red.g-blk.g)+blk.g + g*(yel.g-red.g) + b*(wht.g-yel.g) : ( (r>b) ? r*(red.g-blk.g)+blk.g + g*(wht.g-mag.g) + b*(mag.g-red.g) : r*(mag.g-blu.g) + g*(wht.g-mag.g) + b*(blu.g-blk.g)+blk.g ) ) : tetra02\n"
+  channel2 {-rgba.red -rgba.green rgba.blue none}
+  expr2 "(r>g) ? ( (g>b) ? r*(red.b-blk.b)+blk.b + g*(yel.b-red.b) + b*(wht.b-yel.b) : ( (r>b) ? r*(red.b-blk.b)+blk.b + g*(wht.b-mag.b) + b*(mag.b-red.b) : r*(mag.b-blu.b) + g*(wht.b-mag.b) + b*(blu.b-blk.b)+blk.b ) ) : tetra03\n"
+  maskChannelMask -rgba.alpha
+  name Tetra
+  xpos 0
+  ypos 164
+  disable {{parent.disable_tetra}}
+  addUserKnob {20 User}
+  addUserKnob {18 blk l Black}
+  blk {0 0 0}
+  addUserKnob {6 blk_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {18 wht l White}
+  wht {1 1 1}
+  addUserKnob {6 wht_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_1_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {26 ""}
+  addUserKnob {18 red l Red}
+  red {1 0 0}
+  addUserKnob {6 red_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {18 grn l Green}
+  grn {0 1 0}
+  addUserKnob {6 grn_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {18 blu l Blue}
+  blu {0 0 1}
+  addUserKnob {6 blu_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_2_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {18 cyn l Cyan}
+  cyn {0 1 1}
+  addUserKnob {6 cyn_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_3_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {18 mag l Magenta}
+  mag {1 0 1}
+  addUserKnob {6 mag_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_4_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {18 yel l Yellow}
+  yel {1 1 0}
+  addUserKnob {6 yel_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {6 color_rgb_5_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {20 info}
+  addUserKnob {26 info_1 l "" +STARTLINE T "<style> a:link \{ color: #ccc \}</style>\n<font color=#ccc><br>\n<b>Tetrahedral Interpolation</b> <br>\ncolor transformations using tetrahedral math.\n<br>\n<p>Written by <a href=https://github.com/calvinsilly>silly calvin</a>\n</p>"}
+ }
+ Switch {
+  inputs 2
+  which {{parent.show_mask}}
+  name Show_Mask
+  selected true
+  xpos 0
+  ypos 238
+ }
+ Output {
+  name Output1
+  xpos 0
+  ypos 300
+ }
+end_group
