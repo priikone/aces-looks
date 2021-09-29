@@ -5,7 +5,8 @@
 ```
            Name: ACESLooks LMT - ARRI ALF-2 Colorimetric LMT
     Description: This LMT emulates the colorimetry of the ARRI ALF-2 when used with ACES 1.3. Colorimetric LMT changes scene colorimetry, but doesn't change contrast or exposure. It retains saturation across the entire luminance range.
-       Revision: 1.3-1
+       Revision: 1.3-2
+      Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
@@ -24,6 +25,7 @@
            Name: ACESLooks LMT - ARRI K1S1 Colorimetric LMT
     Description: This LMT emulates the colorimetry of the ARRI K1S1 when used with ACES 1.3. Colorimetric LMT changes scene colorimetry, but doesn't change contrast or exposure. It retains saturation across the entire luminance range.
        Revision: 1.3-1
+      Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
@@ -42,6 +44,7 @@
            Name: ACESLooks LMT - RED IPP2 Colorimetric LMT
     Description: This LMT emulates the colorimetry of the RED IPP2 when used with ACES 1.3. Colorimetric LMT changes scene colorimetry, but doesn't change contrast or exposure. It retains saturation across the entire luminance range.
        Revision: 1.3-1
+      Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
@@ -60,6 +63,7 @@
            Name: ACESLooks LMT - SONY S-Gamut3.Cine Colorimetric LMT
     Description: This LMT emulates the colorimetry of the SONY S-Gamut3.Cine when used with ACES 1.3. Colorimetric LMT changes scene colorimetry, but doesn't change contrast or exposure. It retains saturation across the entire luminance range.
        Revision: 1.3-1
+      Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
@@ -77,7 +81,8 @@
 ```
            Name: ACESLooks LMT - ARRI ALF-2 Look
     Description: This LMT emulates the look of the ARRI ALF-2 DRT when used with ACES 1.3 and Rec.709 Output Transform.
-       Revision: 1.3-1
+       Revision: 1.3-2
+      Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
@@ -98,6 +103,7 @@
            Name: ACESLooks LMT - ARRI K1S1 Look
     Description: This LMT emulates the look of the ARRI K1S1 DRT when used with ACES 1.3 and Rec.709 Output Transform.
        Revision: 1.3-1
+      Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
@@ -116,8 +122,9 @@
 
 ```
            Name: ACESLooks LMT - RED IPP2 Look
-    Description: This LMT emulates the look of the RED IPP2 DRT when used with ACES 1.3 and Rec.709 Output Transform.
+    Description: This LMT emulates the look of the RED IPP2 DRT (MEDIUM contrast) when used with ACES 1.3 and Rec.709 Output Transform.
        Revision: 1.3-1
+      Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
@@ -138,6 +145,7 @@
            Name: ACESLooks LMT - SONY S-Gamut3.Cine Look
     Description: This LMT emulates the look of the SONY S-Gamut3.Cine DRT when used with ACES 1.3 and Rec.709 Output Transform.
        Revision: 1.3-1
+      Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
@@ -158,6 +166,7 @@
            Name: ACESLooks LMT - ARRI Classic Tone-curve Look
     Description: This LMT emulates the tonal appearance of the ARRI K1S1 DRT when used with ACES 1.3. It does not change colorimetry.
        Revision: 1.3-1
+      Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
@@ -176,6 +185,7 @@
            Name: ACESLooks LMT - ARRI Tone-curve Look
     Description: This LMT emulates the tonal appearance of the ARRI ALF-2 DRT when used with ACES 1.3. It does not change colorimetry.
        Revision: 1.3-1
+      Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
@@ -194,6 +204,7 @@
            Name: ACESLooks LMT - RED Tone-curve Look
     Description: This LMT emulates the tonal appearance of the RED IPP2 DRT when used with ACES 1.3. It does not change colorimetry.
        Revision: 1.3-1
+      Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
@@ -212,6 +223,7 @@
            Name: ACESLooks LMT - SONY Neutral Tone-curve Look
     Description: This LMT emulates a neutral version of the tonal appearance of the SONY S-Gamut3.Cine DRT when used with ACES 1.3. It does not change colorimetry.
        Revision: 1.3-1
+      Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
@@ -230,6 +242,7 @@
            Name: ACESLooks LMT - SONY Tone-curve Look
     Description: This LMT emulates the tonal appearance of the SONY S-Gamut3.Cine DRT when used with ACES 1.3. It does not change colorimetry.
        Revision: 1.3-1
+      Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
