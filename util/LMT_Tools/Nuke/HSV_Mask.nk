@@ -4,18 +4,18 @@ push $cut_paste_input
 Group {
  name HSV_Mask
  selected true
- xpos 301
- ypos -57
+ xpos 449
+ ypos -165
  addUserKnob {20 User}
- addUserKnob {4 mask_sel l Mask M {"Saturation (green channel)" "Luminance (blue channel)" "Luminance and Saturation" "Luminance then Saturation" "Hue (red channel)"}}
+ addUserKnob {4 mask_sel l Mask M {"Saturation (green channel)" "Luminance (blue channel)" "Luminance then Saturation" "Hue (red channel)" "Luminance then Hue" "Saturation then Hue" "Luminance then Saturation then Hue"}}
  addUserKnob {41 MaskSelect l "Mask Select" +INVISIBLE T Mask_Select.which}
  addUserKnob {41 lut l "" +STARTLINE T Masks.lut}
 }
  Input {
   inputs 0
   name Input1
-  xpos 0
-  ypos -4
+  xpos -188
+  ypos -21
  }
  Expression {
   temp_name0 cmax
@@ -28,37 +28,177 @@ Group {
   expr1 "cmax == 0 ? 0 : min(1, max(0, delta / cmax))"
   expr2 "min(1, max(0, cmax))"
   name RGB_to_HSV
-  xpos 0
-  ypos 39
+  xpos -188
+  ypos 22
  }
  ColorLookup {
   name Masks
-  xpos 0
-  ypos 74
+  xpos -188
+  ypos 57
  }
- Dot {
-  name Dot7
-  xpos 34
-  ypos 117
- }
-set N9ceca800 [stack 0]
- Dot {
-  name Dot3
-  xpos -64
-  ypos 117
- }
-set N9ceca400 [stack 0]
  Dot {
   name Dot4
   xpos -154
   ypos 117
  }
-set N9ceca000 [stack 0]
+set N6c911c00 [stack 0]
  Dot {
   name Dot1
   xpos -252
   ypos 117
  }
+set N6c911800 [stack 0]
+ Dot {
+  name Dot6
+  xpos -351
+  ypos 117
+ }
+set N6c911400 [stack 0]
+ Dot {
+  name Dot9
+  xpos -438
+  ypos 117
+ }
+set N6c911000 [stack 0]
+ Dot {
+  name Dot11
+  xpos -537
+  ypos 117
+ }
+set N6c910c00 [stack 0]
+ Dot {
+  name Dot12
+  xpos -624
+  ypos 117
+ }
+set N6c910800 [stack 0]
+ Dot {
+  name Dot14
+  xpos -725
+  ypos 117
+ }
+set N6c910400 [stack 0]
+ Dot {
+  name Dot10
+  xpos -814
+  ypos 117
+ }
+set N6c8bfc00 [stack 0]
+ Dot {
+  name Dot13
+  xpos -901
+  ypos 117
+ }
+ Shuffle2 {
+  fromInput1 {{0} B}
+  out1 alpha
+  fromInput2 {{0} B}
+  mappings "1 rgba.red 0 0 rgba.alpha 0 0"
+  name H_to_A3
+  xpos -935
+  ypos 162
+ }
+push $N6c8bfc00
+ Shuffle2 {
+  fromInput1 {{0} B}
+  out1 alpha
+  fromInput2 {{0} B}
+  mappings "1 rgba.green 0 1 rgba.alpha 0 0"
+  name S_to_A3
+  xpos -848
+  ypos 162
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  Achannels alpha
+  Bchannels alpha
+  output alpha
+  name Merge3
+  xpos -890
+  ypos 198
+ }
+push $N6c910400
+ Shuffle2 {
+  fromInput1 {{0} B}
+  out1 alpha
+  fromInput2 {{0} B}
+  mappings "1 rgba.blue 0 2 rgba.alpha 0 0"
+  name V_to_A4
+  xpos -759
+  ypos 162
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  Achannels alpha
+  Bchannels alpha
+  output alpha
+  name Merge4
+  xpos -759
+  ypos 198
+ }
+push $N6c910800
+ Shuffle2 {
+  fromInput1 {{0} B}
+  out1 alpha
+  fromInput2 {{0} B}
+  mappings "1 rgba.red 0 0 rgba.alpha 0 0"
+  name H_to_A1
+  xpos -658
+  ypos 162
+ }
+push $N6c910c00
+ Shuffle2 {
+  fromInput1 {{0} B}
+  out1 alpha
+  fromInput2 {{0} B}
+  mappings "1 rgba.green 0 1 rgba.alpha 0 0"
+  name S_to_A4
+  xpos -571
+  ypos 162
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  Achannels alpha
+  Bchannels alpha
+  output alpha
+  name Merge2
+  xpos -613
+  ypos 198
+ }
+push $N6c911000
+ Shuffle2 {
+  fromInput1 {{0} B}
+  out1 alpha
+  fromInput2 {{0} B}
+  mappings "1 rgba.red 0 0 rgba.alpha 0 0"
+  name H_to_A2
+  xpos -472
+  ypos 162
+ }
+push $N6c911400
+ Shuffle2 {
+  fromInput1 {{0} B}
+  out1 alpha
+  fromInput2 {{0} B}
+  mappings "1 rgba.blue 0 2 rgba.alpha 0 0"
+  name V_to_A3
+  xpos -385
+  ypos 162
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  Achannels alpha
+  Bchannels alpha
+  output alpha
+  name Merge1
+  xpos -427
+  ypos 198
+ }
+push $N6c911800
  Shuffle2 {
   fromInput1 {{0} B}
   out1 alpha
@@ -68,31 +208,19 @@ set N9ceca000 [stack 0]
   xpos -286
   ypos 163
  }
-push $N9ceca800
+push $N6c911c00
  Dot {
-  name Dot8
-  xpos 121
+  name Dot3
+  xpos -64
   ypos 117
  }
-set N9cec8c00 [stack 0]
+set N6c8bc400 [stack 0]
  Dot {
-  name Dot2
-  xpos 219
+  name Dot7
+  xpos 34
   ypos 117
  }
- Expression {
-  expr3 "b < 0 ? 0 : g < 0 ? 0 : b * g"
-  maskChannelMask -rgba.alpha
-  name Mult_S_V
-  xpos 185
-  ypos 164
- }
- Dot {
-  name Dot5
-  xpos 219
-  ypos 252
- }
-push $N9ceca800
+set N6c867c00 [stack 0]
  Shuffle2 {
   fromInput1 {{0} B}
   out1 alpha
@@ -102,7 +230,12 @@ push $N9ceca800
   xpos 0
   ypos 164
  }
-push $N9cec8c00
+push $N6c867c00
+ Dot {
+  name Dot8
+  xpos 121
+  ypos 117
+ }
  Shuffle2 {
   fromInput1 {{0} B}
   out1 alpha
@@ -114,7 +247,7 @@ push $N9cec8c00
  }
  Merge2 {
   inputs 2
-  operation screen
+  operation multiply
   Achannels alpha
   Bchannels alpha
   output alpha
@@ -122,7 +255,7 @@ push $N9cec8c00
   xpos 45
   ypos 200
  }
-push $N9ceca400
+push $N6c8bc400
  Shuffle2 {
   fromInput1 {{0} B}
   out1 alpha
@@ -132,7 +265,7 @@ push $N9ceca400
   xpos -98
   ypos 164
  }
-push $N9ceca000
+push $N6c911c00
  Shuffle2 {
   fromInput1 {{0} B}
   out1 alpha
@@ -143,22 +276,16 @@ push $N9ceca000
   ypos 164
  }
  Switch {
-  inputs 5
+  inputs 7
   which {{parent.mask_sel x1 0.66}}
   name Mask_Select
-  selected true
-  xpos -98
-  ypos 249
- }
- Dot {
-  name Dot10
-  xpos -64
-  ypos 301
+  xpos -188
+  ypos 337
  }
  Output {
   name Output
   label "\n"
-  xpos 0
-  ypos 298
+  xpos -188
+  ypos 391
  }
 end_group
