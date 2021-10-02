@@ -1,0 +1,28 @@
+#
+# Apply given LMT to all images in a given directory.  Outputs
+# display referred images, with following filename format:
+#
+# <clfname>_<nnn>.jpg
+#
+# Where clfname is the name of the LMT, nnn is the image number,
+# starting from 1.  Images are processed in alphabetical order.
+#
+# Usage: apply_lmt_dir <clf-file> <srcdir> <dstdir> [<output-colorspace>]
+#
+# Run from the root of aces-look repo.
+#
+#!/bin/sh
+set -e
+
+clf=$(basename --suffix=.clf "$1")
+src=$(ls -d "$2"/*)
+
+num=1
+for i in $src
+do
+  dst="$3"
+  dst="${dst}/${clf}_$num.jpg"
+
+  util/bin/apply_lmt "$1" "$i" "$dst" "$4"
+  ((num=num + 1))
+done

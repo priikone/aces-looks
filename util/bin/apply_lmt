@@ -12,8 +12,14 @@
 #!/bin/sh
 set -e
 
-file=$(basename "$2")
+if test -z "$OCIO"
+then
+  echo "apply_lmt: error: OCIO environment variable is not set"
+  exit 1
+fi
+
 clf=$(basename "$1")
+file=$(basename "$2")
 
 output="$4"
 if test -z "$output"

@@ -1,6 +1,6 @@
 # Images with Looks
 
-All images that have LMT applied to them were applied with [ocioconvert][https://opencolorio.org/] from
+All images that have LMT applied to them were applied with [ocioconvert](https://opencolorio.org/) from
 the CLF files.
 
 # Source images
