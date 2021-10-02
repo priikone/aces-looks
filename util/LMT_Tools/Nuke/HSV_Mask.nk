@@ -1,13 +1,13 @@
 set cut_paste_input [stack 0]
-version 13.0 v1
+version 13.0 v4
 push $cut_paste_input
 Group {
- name HSV_Mask2
+ name HSV_Mask
  selected true
- xpos 1427
- ypos 42
+ xpos 301
+ ypos -57
  addUserKnob {20 User}
- addUserKnob {4 mask_sel l Mask M {"Saturation (green channel)" "Luminance (blue channel)" "Luminance and Saturation" "Luminance then Saturation"}}
+ addUserKnob {4 mask_sel l Mask M {"Saturation (green channel)" "Luminance (blue channel)" "Luminance and Saturation" "Luminance then Saturation" "Hue (red channel)"}}
  addUserKnob {41 MaskSelect l "Mask Select" +INVISIBLE T Mask_Select.which}
  addUserKnob {41 lut l "" +STARTLINE T Masks.lut}
 }
@@ -41,13 +41,40 @@ Group {
   xpos 34
   ypos 117
  }
-set Ne122b000 [stack 0]
+set N9ceca800 [stack 0]
+ Dot {
+  name Dot3
+  xpos -64
+  ypos 117
+ }
+set N9ceca400 [stack 0]
+ Dot {
+  name Dot4
+  xpos -154
+  ypos 117
+ }
+set N9ceca000 [stack 0]
+ Dot {
+  name Dot1
+  xpos -252
+  ypos 117
+ }
+ Shuffle2 {
+  fromInput1 {{0} B}
+  out1 alpha
+  fromInput2 {{0} B}
+  mappings "1 rgba.red 0 0 rgba.alpha 0 0"
+  name H_to_A
+  xpos -286
+  ypos 163
+ }
+push $N9ceca800
  Dot {
   name Dot8
   xpos 121
   ypos 117
  }
-set Ne122ac00 [stack 0]
+set N9cec8c00 [stack 0]
  Dot {
   name Dot2
   xpos 219
@@ -57,7 +84,6 @@ set Ne122ac00 [stack 0]
   expr3 "b < 0 ? 0 : g < 0 ? 0 : b * g"
   maskChannelMask -rgba.alpha
   name Mult_S_V
-  selected true
   xpos 185
   ypos 164
  }
@@ -66,7 +92,7 @@ set Ne122ac00 [stack 0]
   xpos 219
   ypos 252
  }
-push $Ne122b000
+push $N9ceca800
  Shuffle2 {
   fromInput1 {{0} B}
   out1 alpha
@@ -76,7 +102,7 @@ push $Ne122b000
   xpos 0
   ypos 164
  }
-push $Ne122ac00
+push $N9cec8c00
  Shuffle2 {
   fromInput1 {{0} B}
   out1 alpha
@@ -96,13 +122,7 @@ push $Ne122ac00
   xpos 45
   ypos 200
  }
-push $Ne122b000
- Dot {
-  name Dot3
-  xpos -64
-  ypos 117
- }
-set Ne1229000 [stack 0]
+push $N9ceca400
  Shuffle2 {
   fromInput1 {{0} B}
   out1 alpha
@@ -112,12 +132,7 @@ set Ne1229000 [stack 0]
   xpos -98
   ypos 164
  }
-push $Ne1229000
- Dot {
-  name Dot4
-  xpos -154
-  ypos 117
- }
+push $N9ceca000
  Shuffle2 {
   fromInput1 {{0} B}
   out1 alpha
@@ -128,9 +143,10 @@ push $Ne1229000
   ypos 164
  }
  Switch {
-  inputs 4
-  which {{parent.mask_sel}}
+  inputs 5
+  which {{parent.mask_sel x1 0.66}}
   name Mask_Select
+  selected true
   xpos -98
   ypos 249
  }

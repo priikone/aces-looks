@@ -1,0 +1,28 @@
+#
+# Apply LMT to source image and output display referred image.
+#
+# Usage: apply_lmt <clf-file> <srcimg> <dstimg> [<output-colorspace>]
+#
+# Output colorspace must be a colorspace defined in OCIO config.
+# If omitted "Output - Rec.709" is used.
+#
+# Depends on ocioconvert and oiiotool in path.  Depends on OCIO env
+# variable.
+#
+#!/bin/sh
+set -e
+
+file=$(basename "$2")
+clf=$(basename "$1")
+
+output="$4"
+if test -z "$output"
+then
+  output="Output - Rec.709"
+fi
+
+ocioconvert --lut "$1" "$2" /tmp/$file.tmp.exr
+oiiotool /tmp/$file.tmp.exr --text:x=10:y=50:font="/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf":size=50::color=1.5,1.5,1.5 "$clf - ACES 1.3 - $output" -o /tmp/$file.tmp.exr
+ocioconvert /tmp/$file.tmp.exr "ACES - ACES2065-1" "$3" "$output"
+
+rm -f /tmp/$file.tmp.exr
