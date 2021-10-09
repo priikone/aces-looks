@@ -112,27 +112,33 @@ def clf2ocio(filename):
     root = tree.getroot()
 
     filename = os.path.basename(filename)
-    buf = '    - !<Look>\n'
+    buf = '  - !<Look>\n'
     name = root.attrib['name'] if 'name' in root.attrib else ''
     acesname = ''
+    desc = ''
 
     # Parse the general information before printing, stripping out
     # the namespace which ET always includes in the tag.
     for child in root:
         tag = re.sub(r'^{.*}', '', child.tag)
-        if tag == 'Info':
+        if tag == 'Description':
+            desc = child.text
+        elif tag == 'Info':
             for sub in child:
                 stag = re.sub(r'^{.*}', '', sub.tag)
                 if stag == 'ACESuserName':
                     acesname = sub.text
 
     if acesname:
-        buf += "      %s: %s\n" % ('name', acesname)
+        buf += "    %s: %s\n" % ('name', acesname)
     elif name:
-        buf += "      %s: %s\n" % ('name', name)
+        buf += "    %s: %s\n" % ('name', name)
 
-    buf += '      process_space: ACES - ACES2065-1\n'
-    buf += '      transform: !<FileTransform> {src: ACESLooks/CLF/%s}\n' % filename
+    if desc:
+        buf += '    description: |\n'
+        buf += '      %s\n' % desc
+    buf += '    process_space: ACES2065-1\n'
+    buf += '    transform: !<FileTransform> {src: ACESLooks/CLF/%s}\n' % filename
 
     return buf
 

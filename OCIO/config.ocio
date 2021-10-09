@@ -1,66 +1,92 @@
 looks:
-    - !<Look>
-      name: ACESLooks LMT - ARRI ALF-2 Colorimetric LMT
-      process_space: ACES - ACES2065-1
-      transform: !<FileTransform> {src: ACESLooks/CLF/C-ARRI.clf}
+  - !<Look>
+    name: ACESLooks LMT - ARRI ALF-2 Colorimetric LMT
+    description: |
+      This LMT emulates the colorimetry of the ARRI ALF-2 when used with ACES 1.3. Colorimetric LMT changes scene colorimetry, but doesn't change contrast or exposure. It retains saturation across the entire luminance range.
+    process_space: ACES2065-1
+    transform: !<FileTransform> {src: ACESLooks/CLF/C-ARRI.clf}
 
-    - !<Look>
-      name: ACESLooks LMT - ARRI K1S1 Colorimetric LMT
-      process_space: ACES - ACES2065-1
-      transform: !<FileTransform> {src: ACESLooks/CLF/C-ARRI_Classic.clf}
+  - !<Look>
+    name: ACESLooks LMT - ARRI K1S1 Colorimetric LMT
+    description: |
+      This LMT emulates the colorimetry of the ARRI K1S1 when used with ACES 1.3. Colorimetric LMT changes scene colorimetry, but doesn't change contrast or exposure. It retains saturation across the entire luminance range.
+    process_space: ACES2065-1
+    transform: !<FileTransform> {src: ACESLooks/CLF/C-ARRI_Classic.clf}
 
-    - !<Look>
-      name: ACESLooks LMT - RED IPP2 Colorimetric LMT
-      process_space: ACES - ACES2065-1
-      transform: !<FileTransform> {src: ACESLooks/CLF/C-RED.clf}
+  - !<Look>
+    name: ACESLooks LMT - RED IPP2 Colorimetric LMT
+    description: |
+      This LMT emulates the colorimetry of the RED IPP2 when used with ACES 1.3. Colorimetric LMT changes scene colorimetry, but doesn't change contrast or exposure. It retains saturation across the entire luminance range.
+    process_space: ACES2065-1
+    transform: !<FileTransform> {src: ACESLooks/CLF/C-RED.clf}
 
-    - !<Look>
-      name: ACESLooks LMT - SONY S-Gamut3.Cine Colorimetric LMT
-      process_space: ACES - ACES2065-1
-      transform: !<FileTransform> {src: ACESLooks/CLF/C-SONY.clf}
+  - !<Look>
+    name: ACESLooks LMT - SONY S-Gamut3.Cine Colorimetric LMT
+    description: |
+      This LMT emulates the colorimetry of the SONY S-Gamut3.Cine when used with ACES 1.3. Colorimetric LMT changes scene colorimetry, but doesn't change contrast or exposure. It retains saturation across the entire luminance range.
+    process_space: ACES2065-1
+    transform: !<FileTransform> {src: ACESLooks/CLF/C-SONY.clf}
 
-    - !<Look>
-      name: ACESLooks LMT - ARRI ALF-2 Look
-      process_space: ACES - ACES2065-1
-      transform: !<FileTransform> {src: ACESLooks/CLF/M-ARRI.clf}
+  - !<Look>
+    name: ACESLooks LMT - ARRI ALF-2 Look
+    description: |
+      This LMT emulates the look of the ARRI ALF-2 DRT when used with ACES 1.3 and Rec.709 Output Transform.
+    process_space: ACES2065-1
+    transform: !<FileTransform> {src: ACESLooks/CLF/M-ARRI.clf}
 
-    - !<Look>
-      name: ACESLooks LMT - ARRI K1S1 Look
-      process_space: ACES - ACES2065-1
-      transform: !<FileTransform> {src: ACESLooks/CLF/M-ARRI_Classic.clf}
+  - !<Look>
+    name: ACESLooks LMT - ARRI K1S1 Look
+    description: |
+      This LMT emulates the look of the ARRI K1S1 DRT when used with ACES 1.3 and Rec.709 Output Transform.
+    process_space: ACES2065-1
+    transform: !<FileTransform> {src: ACESLooks/CLF/M-ARRI_Classic.clf}
 
-    - !<Look>
-      name: ACESLooks LMT - RED IPP2 Look
-      process_space: ACES - ACES2065-1
-      transform: !<FileTransform> {src: ACESLooks/CLF/M-RED.clf}
+  - !<Look>
+    name: ACESLooks LMT - RED IPP2 Look
+    description: |
+      This LMT emulates the look of the RED IPP2 DRT (MEDIUM contrast) when used with ACES 1.3 and Rec.709 Output Transform.
+    process_space: ACES2065-1
+    transform: !<FileTransform> {src: ACESLooks/CLF/M-RED.clf}
 
-    - !<Look>
-      name: ACESLooks LMT - SONY S-Gamut3.Cine Look
-      process_space: ACES - ACES2065-1
-      transform: !<FileTransform> {src: ACESLooks/CLF/M-SONY.clf}
+  - !<Look>
+    name: ACESLooks LMT - SONY S-Gamut3.Cine Look
+    description: |
+      This LMT emulates the look of the SONY S-Gamut3.Cine DRT when used with ACES 1.3 and Rec.709 Output Transform.
+    process_space: ACES2065-1
+    transform: !<FileTransform> {src: ACESLooks/CLF/M-SONY.clf}
 
-    - !<Look>
-      name: ACESLooks LMT - ARRI Classic Tone-curve Look
-      process_space: ACES - ACES2065-1
-      transform: !<FileTransform> {src: ACESLooks/CLF/T-ARRI_Classic_Tone.clf}
+  - !<Look>
+    name: ACESLooks LMT - ARRI Classic Tone-curve Look
+    description: |
+      This LMT emulates the tonal appearance of the ARRI K1S1 DRT when used with ACES 1.3. It does not change colorimetry.
+    process_space: ACES2065-1
+    transform: !<FileTransform> {src: ACESLooks/CLF/T-ARRI_Classic_Tone.clf}
 
-    - !<Look>
-      name: ACESLooks LMT - ARRI Tone-curve Look
-      process_space: ACES - ACES2065-1
-      transform: !<FileTransform> {src: ACESLooks/CLF/T-ARRI_Tone.clf}
+  - !<Look>
+    name: ACESLooks LMT - ARRI Tone-curve Look
+    description: |
+      This LMT emulates the tonal appearance of the ARRI ALF-2 DRT when used with ACES 1.3. It does not change colorimetry.
+    process_space: ACES2065-1
+    transform: !<FileTransform> {src: ACESLooks/CLF/T-ARRI_Tone.clf}
 
-    - !<Look>
-      name: ACESLooks LMT - RED Tone-curve Look
-      process_space: ACES - ACES2065-1
-      transform: !<FileTransform> {src: ACESLooks/CLF/T-RED_Tone.clf}
+  - !<Look>
+    name: ACESLooks LMT - RED Tone-curve Look
+    description: |
+      This LMT emulates the tonal appearance of the RED IPP2 DRT when used with ACES 1.3. It does not change colorimetry.
+    process_space: ACES2065-1
+    transform: !<FileTransform> {src: ACESLooks/CLF/T-RED_Tone.clf}
 
-    - !<Look>
-      name: ACESLooks LMT - SONY Neutral Tone-curve Look
-      process_space: ACES - ACES2065-1
-      transform: !<FileTransform> {src: ACESLooks/CLF/T-SONY_Neutral_Tone.clf}
+  - !<Look>
+    name: ACESLooks LMT - SONY Neutral Tone-curve Look
+    description: |
+      This LMT emulates a neutral version of the tonal appearance of the SONY S-Gamut3.Cine DRT when used with ACES 1.3. It does not change colorimetry.
+    process_space: ACES2065-1
+    transform: !<FileTransform> {src: ACESLooks/CLF/T-SONY_Neutral_Tone.clf}
 
-    - !<Look>
-      name: ACESLooks LMT - SONY Tone-curve Look
-      process_space: ACES - ACES2065-1
-      transform: !<FileTransform> {src: ACESLooks/CLF/T-SONY_Tone.clf}
+  - !<Look>
+    name: ACESLooks LMT - SONY Tone-curve Look
+    description: |
+      This LMT emulates the tonal appearance of the SONY S-Gamut3.Cine DRT when used with ACES 1.3. It does not change colorimetry.
+    process_space: ACES2065-1
+    transform: !<FileTransform> {src: ACESLooks/CLF/T-SONY_Tone.clf}
 

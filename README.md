@@ -28,7 +28,7 @@ See [ACESLooks](ACESLooks/) directory for all LMTs and see [Images](img/) for mo
 
 ## Installation
 
-Copy the [ACESLooks](ACESLooks/) directory to your grading suite's LUT/LMT/Look directory.  When upgrading to a new version, remove the old directory and copy it again.
+Copy the [ACESLooks](ACESLooks/) directory to your DCC software's LUT/LMT/Look directory.  When upgrading to a new version, remove the old directory and copy it again.
 
 ### Installation for Davinci Resolve
 
