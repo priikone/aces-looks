@@ -38,8 +38,7 @@ Copy the [ACESLooks](ACESLooks/) directory to following location:
  - Windows: C:\ProgramData\Blackmagic Design\DaVinci Resolve\Support\LUT
  - Linux: /home/resolve/LUT
 
-*NOTE: The CLFs do not work with current versions of Davinci Resolve.  The CLF versions of the LMTs require CLF v3 support in the software.  For the
-time being use the DCTL versions.*
+*NOTE: To use the CLFs you must have Davinci Resolve Studio 17.4.2 or later.*
 
 ### Installation for OpenColorIO
 
