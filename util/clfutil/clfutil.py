@@ -137,7 +137,7 @@ def clf2ocio(filename):
     if desc:
         buf += '    description: |\n'
         buf += '      %s\n' % desc
-    buf += '    process_space: ACES2065-1\n'
+    buf += '    process_space: ACES - ACES2065-1\n'
     buf += '    transform: !<FileTransform> {src: ACESLooks/CLF/%s}\n' % filename
 
     return buf

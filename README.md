@@ -42,7 +42,7 @@ Copy the [ACESLooks](ACESLooks/) directory to following location:
 
 ### Installation for OpenColorIO
 
-*Experimental!*  See [OCIO v2 config](OCIO/).
+See [OCIO v2 config](OCIO/) for a OCIO v2 config file that defines the LMTs as OCIO Looks.
 
 ## Usage
 
@@ -56,6 +56,11 @@ In Davinci Resolve LMTs can be used as LUTs and they are available in the same l
 as they cannot be applied in the ACEScct AP1 timeline space.
 
 ![Example Davinci Resolve project settings](/img/resolve_project.png)
+
+### Usage in Foundry Nuke
+
+In Nuke version 13.1 and newer the CLF LMTs can be used with the OCIOFileTransform node or OCIOLookTransform node if the LMTs are defined as looks in the OCIO config file.  The
+working space in the OCIOFileTranform node must be changed to ACES2065-1 unless the input is already ACES2065-1.
 
 ### Gamut Compression and Out of Gamut Colors
 
