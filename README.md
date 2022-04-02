@@ -42,7 +42,7 @@ Copy the [ACESLooks](ACESLooks/) directory to following location:
 
 ### Installation for OpenColorIO
 
-See [OCIO v2 config](OCIO/) for a OCIO v2 config file that defines the LMTs as OCIO Looks.
+See [OCIO v2 config](OCIO/) file that defines the LMTs as OCIO Looks.
 
 ## Usage
 
@@ -60,7 +60,7 @@ as they cannot be applied in the ACEScct AP1 timeline space.
 ### Usage in Foundry Nuke
 
 In Nuke version 13.1 and newer the CLF LMTs can be used with the OCIOFileTransform node or OCIOLookTransform node if the LMTs are defined as looks in the OCIO config file.  The
-working space in the OCIOFileTranform node must be changed to ACES2065-1 unless the input is already ACES2065-1.
+working space in the OCIOFileTranform node must be changed to ACES2065-1 unless the input is already ACES2065-1, and interpolation must be set to Tetrahedral.
 
 ### Gamut Compression and Out of Gamut Colors
 
