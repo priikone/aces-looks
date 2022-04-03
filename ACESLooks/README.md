@@ -62,7 +62,7 @@
 ```
            Name: ACESLooks LMT - SONY S-Gamut3.Cine Colorimetric LMT
     Description: This LMT emulates the colorimetry of the SONY S-Gamut3.Cine when used with ACES 1.3. Colorimetric LMT changes scene colorimetry, but doesn't change contrast or exposure. It retains saturation across the entire luminance range.
-       Revision: 1.3-1
+       Revision: 1.3-2
       Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
@@ -144,7 +144,7 @@
 ```
            Name: ACESLooks LMT - SONY S-Gamut3.Cine Look
     Description: This LMT emulates the look of the SONY S-Gamut3.Cine DRT when used with ACES 1.3 and Rec.709 Output Transform.
-       Revision: 1.3-1
+       Revision: 1.3-2
       Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)

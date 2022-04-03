@@ -4,7 +4,7 @@
 
            Name: ACESLooks LMT - SONY S-Gamut3.Cine Look
     Description: This LMT emulates the look of the SONY S-Gamut3.Cine DRT when used with ACES 1.3 and Rec.709 Output Transform.
-       Revision: 1.3-1
+       Revision: 1.3-2
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
           Range: Clamp to max 65504
