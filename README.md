@@ -65,7 +65,8 @@ working space in the OCIOFileTranform node must be changed to ACES2065-1 unless 
 ### Gamut Compression and Out of Gamut Colors
 
 Out of gamut colors are pixels with negative color values and they can occur in ACES.  None of the LMTs specifically handle negative values and it is recommended to use the ACES 1.3
-Reference Gamut Compression (RGC) operator *before* the LMTs with those images that have out of gamut colors.
+Reference Gamut Compression (RGC) operator *before* the LMTs with those images that have out of gamut colors.  It is not necessary to apply it if your image doesn't have out of
+gamut colors.
 
 Gamut compression can be used also creatively.  Since the colorimetric LMTs retain saturation over the entire luminance range they can retain also super saturated colors.  These colors may
 be undesired, too strong or cause clipping with some images.  In these cases gamut compression operator could be used before or after the colorimetric LMTs to achieve the desired look.  This

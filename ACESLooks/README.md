@@ -24,7 +24,7 @@
 ```
            Name: ACESLooks LMT - ARRI K1S1 Colorimetric LMT
     Description: This LMT emulates the colorimetry of the ARRI K1S1 when used with ACES 1.3. Colorimetric LMT changes scene colorimetry, but doesn't change contrast or exposure. It retains saturation across the entire luminance range.
-       Revision: 1.3-1
+       Revision: 1.3-2
       Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
@@ -43,7 +43,7 @@
 ```
            Name: ACESLooks LMT - RED IPP2 Colorimetric LMT
     Description: This LMT emulates the colorimetry of the RED IPP2 when used with ACES 1.3. Colorimetric LMT changes scene colorimetry, but doesn't change contrast or exposure. It retains saturation across the entire luminance range.
-       Revision: 1.3-1
+       Revision: 1.3-2
       Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
@@ -102,7 +102,7 @@
 ```
            Name: ACESLooks LMT - ARRI K1S1 Look
     Description: This LMT emulates the look of the ARRI K1S1 DRT when used with ACES 1.3 and Rec.709 Output Transform.
-       Revision: 1.3-1
+       Revision: 1.3-2
       Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
@@ -123,7 +123,7 @@
 ```
            Name: ACESLooks LMT - RED IPP2 Look
     Description: This LMT emulates the look of the RED IPP2 DRT (MEDIUM contrast) when used with ACES 1.3 and Rec.709 Output Transform.
-       Revision: 1.3-1
+       Revision: 1.3-2
       Copyright: https://github.com/priikone/aces-looks
           Input: ACES2065-1 AP0 [full dynamic range]
          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
