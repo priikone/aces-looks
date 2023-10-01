@@ -1,15 +1,17 @@
 set cut_paste_input [stack 0]
-version 13.1 v3
+version 14.0 v1
 Group {
  inputs 0
  name DominantWavelength
  selected true
- xpos 360
- ypos -218
+ xpos 420
+ ypos -638
  postage_stamp true
  addUserKnob {20 User}
  addUserKnob {41 presets_dst l dst T GamutConvert_live.presets_dst}
  addUserKnob {41 dst_name l "" -STARTLINE T GamutConvert_live.dst_name}
+ addUserKnob {41 cct_min l "ACEScct min" T ACEScct_ramp.cct_min}
+ addUserKnob {41 cct_max l "ACEScct max" T ACEScct_ramp.cct_max}
 }
  Reformat {
   inputs 0
@@ -35,7 +37,7 @@ Group {
   addUserKnob {20 User}
   addUserKnob {7 cct_min l "ACEScct min" R -0.5 0.5}
   addUserKnob {7 cct_max l "ACEScct max" R 0.5 1.468}
-  cct_max 1.43
+  cct_max 1.468
  }
  Group {
   name LogConvert_ACESLog
@@ -56,19 +58,19 @@ Group {
    xpos -6
    ypos 74
   }
-set Nd753000 [stack 0]
+set N90734c00 [stack 0]
   Dot {
    name Dot2
    xpos 234
    ypos 74
   }
-set Nd752c00 [stack 0]
+set N90735000 [stack 0]
   Dot {
    name Dot3
    xpos 474
    ypos 74
   }
-set Nd752800 [stack 0]
+set N90735400 [stack 0]
   Expression {
    expr0 r<0?0:((log(r)/log(2)+2.5)*50+425)/1023
    expr1 g<0?0:((log(g)/log(2)+2.5)*50+425)/1023
@@ -79,7 +81,7 @@ set Nd752800 [stack 0]
    xpos 440
    ypos 108
   }
-push $Nd752800
+push $N90735400
   Expression {
    expr0 pow(2,((r*1023)-425)/50-2.5)
    expr1 pow(2,((g*1023)-425)/50-2.5)
@@ -97,7 +99,7 @@ push $Nd752800
    xpos 440
    ypos 190
   }
-push $Nd752c00
+push $N90735000
   Expression {
    expr0 r<0?(log(pow(2,-16))/log(2)+9.72)/17.52:r<pow(2,-15)?(log(pow(2,-16)+r*0.5)/log(2)+9.72)/17.52:(log(r)/log(2)+9.72)/17.52
    expr1 g<0?(log(pow(2,-16))/log(2)+9.72)/17.52:g<pow(2,-15)?(log(pow(2,-16)+g*0.5)/log(2)+9.72)/17.52:(log(g)/log(2)+9.72)/17.52
@@ -108,7 +110,7 @@ push $Nd752c00
    xpos 200
    ypos 104
   }
-push $Nd752c00
+push $N90735000
   Expression {
    expr0 r<(9.72-15)/17.52?(pow(2,(r*17.52-9.72))-pow(2,-16))*2:pow(2,(r*17.52-9.72))
    expr1 g<(9.72-15)/17.52?(pow(2,(g*17.52-9.72))-pow(2,-16))*2:pow(2,(g*17.52-9.72))
@@ -126,7 +128,7 @@ push $Nd752c00
    xpos 200
    ypos 190
   }
-push $Nd753000
+push $N90734c00
   Expression {
    temp_name0 cut_lin
    temp_expr0 0.0078125
@@ -145,7 +147,7 @@ push $Nd753000
    xpos -40
    ypos 108
   }
-push $Nd753000
+push $N90734c00
   Expression {
    temp_name0 cut_lin
    temp_expr0 0.0078125
@@ -161,6 +163,7 @@ push $Nd753000
    channel3 none
    name log2lin
    label ACEScct
+   selected true
    xpos -158
    ypos 105
   }
@@ -183,7 +186,7 @@ push $Nd753000
    xpos -40
    ypos 430
   }
-push $Nd752800
+push $N90735400
   Expression {
    temp_name0 StepsPerStop
    temp_expr0 50
@@ -206,7 +209,7 @@ push $Nd752800
   xpos 13
   ypos -185
  }
-set Nfb337000 [stack 0]
+set N907ae800 [stack 0]
  Grade {
   multiply {0.01135916 0.004102 0 1}
   multiply_panelDropped true
@@ -214,7 +217,7 @@ set Nfb337000 [stack 0]
   xpos 741
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.01584 0.005723 0 1}
   multiply_panelDropped true
@@ -222,7 +225,7 @@ push $Nfb337000
   xpos 653
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.0227 0.00821 0 1}
   multiply_panelDropped true
@@ -230,7 +233,7 @@ push $Nfb337000
   xpos 565
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.0329 0.01192 0 1}
   multiply_panelDropped true
@@ -238,7 +241,7 @@ push $Nfb337000
   xpos 479
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.04677 0.017 0 1}
   multiply_panelDropped true
@@ -246,7 +249,7 @@ push $Nfb337000
   xpos 395
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.0636 0.0232 0 1}
   multiply_panelDropped true
@@ -254,7 +257,7 @@ push $Nfb337000
   xpos 315
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.0874 0.032 0 1}
   multiply_panelDropped true
@@ -262,7 +265,7 @@ push $Nfb337000
   xpos 233
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.1212 0.04458 0 1}
   multiply_panelDropped true
@@ -270,7 +273,7 @@ push $Nfb337000
   xpos 147
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.1649 0.061 0 1}
   multiply_panelDropped true
@@ -278,7 +281,7 @@ push $Nfb337000
   xpos 65
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.2187 0.0816 0 1}
   multiply_panelDropped true
@@ -286,7 +289,7 @@ push $Nfb337000
   xpos -18
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.2835 0.107 0 1}
   multiply_panelDropped true
@@ -294,7 +297,7 @@ push $Nfb337000
   xpos -105
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.3608 0.1382 1e-05 1}
   multiply_panelDropped true
@@ -302,7 +305,7 @@ push $Nfb337000
   xpos -189
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.4479 0.175 2e-05 1}
   multiply_panelDropped true
@@ -310,7 +313,7 @@ push $Nfb337000
   xpos -275
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.5419 0.217 3e-05 1}
   multiply_panelDropped true
@@ -318,7 +321,7 @@ push $Nfb337000
   xpos -359
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.6424 0.265 4.999999e-05 1}
   multiply_panelDropped true
@@ -326,7 +329,7 @@ push $Nfb337000
   xpos -444
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.7514 0.321 0.0001 1}
   multiply_panelDropped true
@@ -334,7 +337,7 @@ push $Nfb337000
   xpos -528
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.8544499 0.381 0.00019 1}
   multiply_panelDropped true
@@ -342,7 +345,7 @@ push $Nfb337000
   xpos -611
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.9384 0.4412 0.00024 1}
   multiply_panelDropped true
@@ -350,7 +353,7 @@ push $Nfb337000
   xpos -695
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {1.0026 0.503 0.00034 1}
   multiply_panelDropped true
@@ -358,7 +361,7 @@ push $Nfb337000
   xpos -782
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {1.0456 0.5668 0.0006 1}
   multiply_panelDropped true
@@ -366,7 +369,7 @@ push $Nfb337000
   xpos -867
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {1.0622 0.631 0.0008 1}
   multiply_panelDropped true
@@ -374,7 +377,7 @@ push $Nfb337000
   xpos -951
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {1.0567 0.6949 0.001 1}
   multiply_panelDropped true
@@ -382,7 +385,7 @@ push $Nfb337000
   xpos -1034
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {1.0263 0.757 0.0011 1}
   multiply_panelDropped true
@@ -390,7 +393,7 @@ push $Nfb337000
   xpos -1118
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.9786 0.8163 0.0014 1}
   multiply_panelDropped true
@@ -398,7 +401,7 @@ push $Nfb337000
   xpos -1205
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.9163 0.87 0.001650001 1}
   multiply_panelDropped true
@@ -406,7 +409,7 @@ push $Nfb337000
   xpos -1296
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.8425 0.9154 0.0018 1}
   multiply_panelDropped true
@@ -414,7 +417,7 @@ push $Nfb337000
   xpos -1382
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.7621 0.952 0.0021 1}
   multiply_panelDropped true
@@ -422,7 +425,7 @@ push $Nfb337000
   xpos -1467
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.6784 0.9786 0.002749999 1}
   multiply_panelDropped true
@@ -430,7 +433,7 @@ push $Nfb337000
   xpos -1551
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.5945 0.995 0.0039 1}
   multiply_panelDropped true
@@ -438,7 +441,7 @@ push $Nfb337000
   xpos -1636
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.5120501 1 0.005749999 1}
   multiply_panelDropped true
@@ -446,7 +449,7 @@ push $Nfb337000
   xpos -1722
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.4334499 0.9949501 0.008749999 1}
   multiply_panelDropped true
@@ -454,7 +457,7 @@ push $Nfb337000
   xpos -1805
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.3597 0.9803 0.0134 1}
   multiply_panelDropped true
@@ -462,7 +465,7 @@ push $Nfb337000
   xpos -1890
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.2904 0.954 0.0203 1}
   multiply_panelDropped true
@@ -470,7 +473,7 @@ push $Nfb337000
   xpos -1976
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.2257499 0.9148501 0.02984 1}
   multiply_panelDropped true
@@ -478,7 +481,7 @@ push $Nfb337000
   xpos -2061
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.1655 0.862 0.04216 1}
   multiply_panelDropped true
@@ -486,7 +489,7 @@ push $Nfb337000
   xpos -2145
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.1096 0.7932 0.05725001 1}
   multiply_panelDropped true
@@ -494,7 +497,7 @@ push $Nfb337000
   xpos -2230
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.06327 0.71 0.07824999 1}
   multiply_panelDropped true
@@ -502,7 +505,7 @@ push $Nfb337000
   xpos -2316
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.0291 0.6082 0.1117 1}
   multiply_panelDropped true
@@ -510,7 +513,7 @@ push $Nfb337000
   xpos -2402
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.0093 0.503 0.1582 1}
   multiply_panelDropped true
@@ -518,7 +521,7 @@ push $Nfb337000
   xpos -2489
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.0024 0.4073 0.2123 1}
   multiply_panelDropped true
@@ -526,7 +529,7 @@ push $Nfb337000
   xpos -2576
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.0049 0.323 0.272 1}
   multiply_panelDropped true
@@ -534,7 +537,7 @@ push $Nfb337000
   xpos -2664
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.0147 0.2586 0.3533 1}
   multiply_panelDropped true
@@ -542,7 +545,7 @@ push $Nfb337000
   xpos -2750
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.03201 0.20802 0.46518 1}
   multiply_panelDropped true
@@ -550,7 +553,7 @@ push $Nfb337000
   xpos -2838
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.05795001 0.1693 0.6162 1}
   multiply_panelDropped true
@@ -558,7 +561,7 @@ push $Nfb337000
   xpos -2925
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.09564 0.13902 0.8129501 1}
   multiply_panelDropped true
@@ -566,7 +569,7 @@ push $Nfb337000
   xpos -3012
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.1421 0.1126 1.0419 1}
   multiply_panelDropped true
@@ -574,7 +577,7 @@ push $Nfb337000
   xpos -3102
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.19536 0.09098 1.28764 1}
   multiply_panelDropped true
@@ -582,7 +585,7 @@ push $Nfb337000
   xpos -3189
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.2511 0.0739 1.5281 1}
   multiply_panelDropped true
@@ -590,7 +593,7 @@ push $Nfb337000
   xpos -3274
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.2908 0.06 1.6692 1}
   multiply_panelDropped true
@@ -598,7 +601,7 @@ push $Nfb337000
   xpos -3362
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.3187 0.048 1.7441 1}
   multiply_panelDropped true
@@ -606,7 +609,7 @@ push $Nfb337000
   xpos -3452
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.3362 0.038 1.77211 1}
   multiply_panelDropped true
@@ -614,7 +617,7 @@ push $Nfb337000
   xpos -3541
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.34806 0.0298 1.7826 1}
   multiply_panelDropped true
@@ -622,7 +625,7 @@ push $Nfb337000
   xpos -3631
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.34828 0.023 1.74706 1}
   multiply_panelDropped true
@@ -630,7 +633,7 @@ push $Nfb337000
   xpos -3729
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.3285 0.01684 1.62296 1}
   multiply_panelDropped true
@@ -638,7 +641,7 @@ push $Nfb337000
   xpos -3820
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.2839 0.0116 1.3856 1}
   multiply_panelDropped true
@@ -646,7 +649,7 @@ push $Nfb337000
   xpos -3911
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.21477 0.0073 1.0390501 1}
   multiply_panelDropped true
@@ -654,7 +657,7 @@ push $Nfb337000
   xpos -4001
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.13438 0.004 0.6456 1}
   multiply_panelDropped true
@@ -662,7 +665,7 @@ push $Nfb337000
   xpos -4099
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.07763 0.00218 0.3713 1}
   multiply_panelDropped true
@@ -670,7 +673,7 @@ push $Nfb337000
   xpos -4204
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.04351 0.00121 0.2074 1}
   multiply_panelDropped true
@@ -678,7 +681,7 @@ push $Nfb337000
   xpos -4312
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.02319 0.00064 0.1102 1}
   multiply_panelDropped true
@@ -686,7 +689,7 @@ push $Nfb337000
   xpos -4406
   ypos -100
  }
-push $Nfb337000
+push $N907ae800
  Grade {
   multiply {0.01431 0.000396 0.06785001 1}
   multiply_panelDropped true
@@ -709,7 +712,8 @@ push $Nfb337000
  Group {
   name GamutConvert_live
   tile_color 0xcc804eff
-  label "XYZ D65 to ACES AP0"
+  label "XYZ D65 to ACES AP1"
+  selected true
   xpos 1
   ypos 53
   addUserKnob {20 Params}
@@ -719,7 +723,7 @@ push $Nfb337000
   addUserKnob {41 src l " " T _knobchanged_.src}
   addUserKnob {35 presets_dst l dst M {gamut/XYZ "knobs this \{dst_name \"XYZ\" dst \"\"\}" "gamut/XYZ D65" "knobs this \{dst_name \"XYZ D65\" dst \"1 0 0 1 0 0 0.3127 0.329\"\}" "gamut/ACES AP0" "knobs this \{dst_name \"ACES AP0\" dst \"0.7347 0.2653 0.0 1.0 0.0001 -0.077 0.32168 0.33767\"\}" "gamut/ACES AP1" "knobs this \{dst_name \"ACES AP1\" dst \"0.713 0.293 0.165 0.83 0.128 0.044 0.32168 0.33767\"\}" "gamut/Filmlight E-Gamut" "knobs this \{dst_name \"Filmlight E-Gamut\" dst \"0.8 0.3177 0.18 0.9 0.065 -0.0805 0.3127 0.329\"\}" "gamut/DaVinci Wide Gamut" "knobs this \{dst_name \"DaVinci Wide Gamut\" dst \"0.8 0.313 0.1682 0.9877 0.079 -0.1155 0.3127 0.329\"\}" gamut/Rec709 "knobs this \{dst_name \"Rec709\" dst \"0.64 0.33 0.3 0.6 0.15 0.06 0.3127 0.329\"\}" gamut/Rec2020 "knobs this \{dst_name \"Rec2020\" dst \"0.708 0.292 0.17 0.797 0.131 0.046 0.3127 0.329\"\}" gamut/P3D60 "knobs this \{dst_name \"P3D60\" dst \"0.68 0.32 0.265 0.69 0.15 0.06 0.321626 0.337737\"\}" gamut/P3D65 "knobs this \{dst_name \"P3D65\" dst \"0.68 0.32 0.265 0.69 0.15 0.06 0.3127 0.329\"\}" gamut/P3DCI "knobs this \{dst_name \"P3DCI\" dst \"0.68 0.32 0.265 0.69 0.15 0.06 0.314 0.351\"\}" "gamut/Arri Alexa Wide Gamut v3" "knobs this \{dst_name \"Arri Alexa Wide Gamut v3\" dst \"0.684 0.313 0.221 0.848 0.0861 -0.102 0.3127 0.329\"\}" "gamut/Arri Alexa Wide Gamut v4" "knobs this \{dst_name \"Arri Alexa Wide Gamut v4\" dst \"0.7347 0.2653 0.1424 0.8576 0.0991 -0.0308 0.3127 0.329\"\}" "gamut/RED Wide Gamut RGB" "knobs this \{dst_name \"RED Wide Gamut RGB\" dst \"0.780308 0.304253 0.121595 1.493994 0.095612 -0.084589 0.3127 0.329\"\}" "gamut/GoPro Protune Native" "knobs this \{dst_name \"GoPro Protune Native\" dst \"0.69848046 0.19302645 0.32955538 1.02459662 0.10844263 -0.03467857 0.3127 0.329\"\}" "gamut/Canon Cinema Gamut" "knobs this \{dst_name \"Canon Cinema Gamut\" dst \"0.74 0.27 0.17 1.14 0.08 -0.1 0.3127 0.329\"\}" "gamut/Sony SGamut3" "knobs this \{dst_name \"Sony SGamut3\" dst \"0.73 0.28 0.14 0.855 0.1 -0.05 0.3127 0.329\"\}" "gamut/Sony SGamut3.Cine" "knobs this \{dst_name \"Sony SGamut3.Cine\" dst \"0.766 0.275 0.225 0.8 0.089 -0.087 0.3127 0.329\"\}" "gamut/Panasonic V-Gamut" "knobs this \{dst_name \"Panasonic V-Gamut\" dst \"0.73 0.28 0.165 0.84 0.1 -0.03 0.3127 0.329\"\}" "gamut/DJI D-Gamut" "knobs this \{dst_name \"DJI D-Gamut\" dst \"0.71 0.31 0.21 0.88 0.09 -0.08 0.3127 0.329\"\}" "gamut/Fujifilm F-Gamut" "knobs this \{dst_name \"Fujifilm F-Gamut\" dst \"0.708 0.292 0.17 0.797 0.131 0.046 0.3127 0.329\"\}" "gamut/Nikon N-Gamut" "knobs this \{dst_name \"Nikon N-Gamut\" dst \"0.708 0.292 0.17 0.797 0.131 0.046 0.3127 0.329\"\}" "gamut/Blackmagic Wide Gamut" "knobs this \{dst_name \"Blackmagic Wide Gamut\" dst \"0.7177215 0.3171181 0.228041 0.861569 0.1005841 -0.0820452 0.3127 0.329\"\}" "gamut/Adobe RGB" "knobs this \{dst_name \"Adobe RGB\" dst \"0.64 0.33 0.21 0.71 0.15 0.06 0.3127 0.329\"\}" "gamut/Adobe WideGamutRGB" "knobs this \{dst_name \"Adobe WideGamutRGB\" dst \"0.7347 0.2653 0.1152 0.8264 0.1566 0.0177 0.3457 0.3585\"\}" gamut/ProPhotoRGB "knobs this \{dst_name \"ProPhotoRGB\" dst \"0.734699 0.265301 0.159597 0.840403 0.036598 0.000105 0.345704 0.358540\"\}" "" "" "" "" ""}}
   addUserKnob {1 dst_name l "" -STARTLINE}
-  dst_name "ACES AP0"
+  dst_name "ACES AP1"
   addUserKnob {41 dst l " " T _knobchanged_.dst}
   addUserKnob {41 cat T _knobchanged_.cat}
   addUserKnob {26 ""}
@@ -747,16 +751,16 @@ push $Nfb337000
    addUserKnob {1 src l " " t "source gamut chromaticities: rgbw"}
    src "1 0 0 1 0 0 0.3127 0.329"
    addUserKnob {1 dst l " " t "destination gamut chromaticities: rgbw"}
-   dst "0.7347 0.2653 0.0 1.0 0.0001 -0.077 0.32168 0.33767"
+   dst "0.713 0.293 0.165 0.83 0.128 0.044 0.32168 0.33767"
    addUserKnob {83 cat M {bradford cat02 none}}
    cat cat02
    addUserKnob {6 invert t "invert matrix direction" +STARTLINE}
   }
   ColorMatrix {
    matrix {
-       {1.062366107 0.008406953654 -0.01665578963}
-       {-0.4939413716 1.371109525 0.09031658697}
-       {-0.0003346685774 -0.001037458272 0.9194696473}
+       {1.658854308 -0.3118569754 -0.2431560071}
+       {-0.6622832871 1.612199571 0.0158591266}
+       {0.01148056646 -0.009236324924 0.9166865134}
      }
    name ColorMatrix
    note_font Helvetica
