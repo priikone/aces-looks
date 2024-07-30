@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ProcessList xmlns="urn:AMPAS:CLF:v3.0" id="SONY Tone-curve Look" name="SONY Tone-curve Look" compCLFversion="3.0">
     <Description>This LMT emulates the tonal appearance of the SONY S-Gamut3.Cine DRT when used with ACES 1.3. It does not change colorimetry.</Description>
     <InputDescriptor>ACES2065-1 AP0 [full dynamic range]</InputDescriptor>
