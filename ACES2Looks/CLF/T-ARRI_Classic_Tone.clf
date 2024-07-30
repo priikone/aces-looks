@@ -1,10 +1,10 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ProcessList xmlns="urn:AMPAS:CLF:v3.0" id="ARRI Clasic Tone-curve Look" name="ARRI Classic Tone-curve Look" compCLFversion="3.0">
     <Description>This LMT emulates the tonal appearance of the ARRI K1S1 DRT when used with ACES 2.0. It does not change colorimetry.</Description>
     <InputDescriptor>ACES2065-1 AP0 [full dynamic range]</InputDescriptor>
     <OutputDescriptor>ACES2065-1 AP0 [full dynamic range]</OutputDescriptor>
     <Info>
-        <ACESuserName>ACESLooks LMT - ARRI Classic Tone-curve Look</ACESuserName>
+        <ACESuserName>ACES2Looks LMT - ARRI Classic Tone-curve Look</ACESuserName>
         <Revision>2.0-1</Revision>
         <Copyright>https://github.com/priikone/aces-looks</Copyright>
     </Info>
