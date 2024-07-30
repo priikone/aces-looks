@@ -20,7 +20,7 @@ __copyright__ = 'Copyright (C) 2021 Pekka Riikonen'
 __email__ = 'priikone@iki.fi'
 
 __major_version__ = '0'
-__minor_version__ = '2'
+__minor_version__ = '3'
 __change_version__ = '0'
 __version__ = '.'.join((__major_version__, __minor_version__,
                         __change_version__))
@@ -325,7 +325,7 @@ def main():
     p = optparse.OptionParser(
         description='',
         prog='clfutil',
-        version='0.1.0',
+        version='0.3.0',
         usage='clfutil [options] [info|dctl|ocio] <clf-file>')
 
     p.add_option('--lut-scaling', '-s', nargs=0, default=False)

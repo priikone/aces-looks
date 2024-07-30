@@ -11,7 +11,7 @@ rm -f README.md
 
 clfs=`ls CLF/*.clf`
 
-echo "# Available LMTs" >> README.md
+echo "# Available LMTs for ACES1" >> README.md
 
 for i in $clfs
 do
@@ -34,7 +34,7 @@ rm -f README.md
 
 clfs=`ls CLF/*.clf`
 
-echo "# Available LMTs" >> README.md
+echo "# Available LMTs for ACES2" >> README.md
 
 for i in $clfs
 do

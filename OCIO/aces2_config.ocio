@@ -6,3 +6,17 @@ looks:
     process_space: ACES - ACES2065-1
     transform: !<FileTransform> {src: ACES2Looks/CLF/T-ARRI_Classic_Tone.clf}
 
+  - !<Look>
+    name: ACESLooks LMT - ARRI REVEAL Tone-curve Look
+    description: |
+      This LMT emulates the tonal appearance of the ARRI REVEAL DRT (2022) when used with ACES 2.0. It does not change colorimetry.
+    process_space: ACES - ACES2065-1
+    transform: !<FileTransform> {src: ACES2Looks/CLF/T-ARRI_REVEAL_Tone.clf}
+
+  - !<Look>
+    name: ACESLooks LMT - ARRI Tone-curve Look
+    description: |
+      This LMT emulates the tonal appearance of the ARRI ALF-2 DRT when used with ACES 2.0. It does not change colorimetry.
+    process_space: ACES - ACES2065-1
+    transform: !<FileTransform> {src: ACES2Looks/CLF/T-ARRI_Tone.clf}
+
