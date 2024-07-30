@@ -103,7 +103,7 @@ def clfprint(filename):
     return buf
 
 
-def clf2ocio(filename):
+def clf2ocio(filename, aces_ver=2):
     """
     Print OCIO config Look entry from the CLF file and return it.
     """
@@ -138,7 +138,7 @@ def clf2ocio(filename):
         buf += '    description: |\n'
         buf += '      %s\n' % desc
     buf += '    process_space: ACES - ACES2065-1\n'
-    buf += '    transform: !<FileTransform> {src: ACESLooks/CLF/%s}\n' % filename
+    buf += '    transform: !<FileTransform> {src: ACES%dLooks/CLF/%s}\n' % (aces_ver, filename)
 
     return buf
 
@@ -329,6 +329,7 @@ def main():
         usage='clfutil [options] [info|dctl|ocio] <clf-file>')
 
     p.add_option('--lut-scaling', '-s', nargs=0, default=False)
+    p.add_option('--aces-ver', '-a', nargs=1, default=2)
 
     options, arguments = p.parse_args()
 
@@ -347,7 +348,7 @@ def main():
         buf = clfprint(filename)
         print(buf, end = "")
     elif cmd == 'ocio':
-        buf = clf2ocio(filename)
+        buf = clf2ocio(filename, options.aces_ver)
         print(buf, end = "")
     elif cmd == 'dctl':
         clf2dctl(filename, options.lut_scaling)

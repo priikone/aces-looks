@@ -4,18 +4,38 @@
 #!/bin/sh
 set -e
 
-clfs=`ls ACESLooks/CLF/*.clf`
+# ACES1
+clfs=`ls ACES1Looks/CLF/*.clf`
 
 cd OCIO
-cp config.ocio config.ocio.old
-rm -f config.ocio
+cp aces1_config.ocio aces1_config.ocio.old
+rm -f aces1_config.ocio
 
-echo "looks:" >> config.ocio
+echo "looks:" >> aces1_config.ocio
 
 for i in $clfs
 do
-  ../util/bin/clfutil ocio ../$i >> config.ocio
-  echo "" >> config.ocio
+  ../util/bin/clfutil ocio ../$i >> aces1_config.ocio
+  echo "" >> aces1_config.ocio
 done
 
-rm -f config.ocio.old
+rm -f aces1_config.ocio.old
+cd -
+
+# ACES2
+clfs=`ls ACES2Looks/CLF/*.clf`
+
+cd OCIO
+cp aces2_config.ocio aces2_config.ocio.old
+rm -f aces2_config.ocio
+
+echo "looks:" >> aces2_config.ocio
+
+for i in $clfs
+do
+  ../util/bin/clfutil ocio ../$i >> aces2_config.ocio
+  echo "" >> aces2_config.ocio
+done
+
+rm -f aces2_config.ocio.old
+cd -
