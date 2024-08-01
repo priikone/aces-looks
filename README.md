@@ -24,15 +24,15 @@ The following emulation LMTs are available:
 
 For all emulation LMTs, equivalent colorimetric LMT exists as well.
 
-See [ACESLooks](ACESLooks/) directory for all LMTs and see [Images](img/) for more example images and comparison images for emulation LMTs.
+See [ACESLooks](ACES1Looks/) directory for all LMTs and see [Images](img/) for more example images and comparison images for emulation LMTs.
 
 ## Installation
 
-Copy the [ACESLooks](ACESLooks/) directory to your DCC software's LUT/LMT/Look directory.  When upgrading to a new version, remove the old directory and copy it again.
+Copy the [ACESLooks](ACES1Looks/) directory to your DCC software's LUT/LMT/Look directory.  When upgrading to a new version, remove the old directory and copy it again.
 
 ### Installation for Davinci Resolve
 
-Copy the [ACESLooks](ACESLooks/) directory to following location:
+Copy the [ACESLooks](ACES1Looks/) directory to following location:
 
  - Mac: /Library/Application Support/Blackmagic Design/DaVinci Resolve/LUT
  - Windows: C:\ProgramData\Blackmagic Design\DaVinci Resolve\Support\LUT
