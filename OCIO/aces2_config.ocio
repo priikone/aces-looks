@@ -1,50 +1,86 @@
 looks:
   - !<Look>
     name: ACES2Looks LMT - ACES1 Tone-curve Look
+    process_space: ACES - ACES2065-1
     description: |
       This LMT emulates the tonal appearance of the ACES 1.3 when used with ACES 2.0. It does not change colorimetry.
-    process_space: ACES - ACES2065-1
+
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-ACES1_Tone.a2.v1
+
+      AMF Components
+      --------------
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-ACES1_Tone.a2.v1
     transform: !<FileTransform> {src: ACES2Looks/CLF/T-ACES1_Tone.clf}
 
   - !<Look>
     name: ACES2Looks LMT - ARRI Classic Tone-curve Look
+    process_space: ACES - ACES2065-1
     description: |
       This LMT emulates the tonal appearance of the ARRI K1S1 DRT when used with ACES 2.0. It does not change colorimetry.
-    process_space: ACES - ACES2065-1
+
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-ARRI_Classic_Tone.a2.v1
+
+      AMF Components
+      --------------
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-ARRI_Classic_Tone.a2.v1
     transform: !<FileTransform> {src: ACES2Looks/CLF/T-ARRI_Classic_Tone.clf}
 
   - !<Look>
     name: ACES2Looks LMT - ARRI REVEAL Tone-curve Look
+    process_space: ACES - ACES2065-1
     description: |
       This LMT emulates the tonal appearance of the ARRI REVEAL DRT (2022) when used with ACES 2.0. It does not change colorimetry.
-    process_space: ACES - ACES2065-1
     transform: !<FileTransform> {src: ACES2Looks/CLF/T-ARRI_REVEAL_Tone.clf}
 
   - !<Look>
     name: ACES2Looks LMT - ARRI Tone-curve Look
+    process_space: ACES - ACES2065-1
     description: |
       This LMT emulates the tonal appearance of the ARRI ALF-2 DRT when used with ACES 2.0. It does not change colorimetry.
-    process_space: ACES - ACES2065-1
+
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-ARRI_Tone.a2.v1
+
+      AMF Components
+      --------------
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-ARRI_Tone.a2.v1
     transform: !<FileTransform> {src: ACES2Looks/CLF/T-ARRI_Tone.clf}
 
   - !<Look>
     name: ACES2Looks LMT - RED Tone-curve Look
+    process_space: ACES - ACES2065-1
     description: |
       This LMT emulates the tonal appearance of the RED IPP2 DRT when used with ACES 2.0. It does not change colorimetry.
-    process_space: ACES - ACES2065-1
+
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-RED_Tone.a2.v1
+
+      AMF Components
+      --------------
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-RED_Tone.a2.v1
     transform: !<FileTransform> {src: ACES2Looks/CLF/T-RED_Tone.clf}
 
   - !<Look>
     name: ACES2Looks LMT - SONY Neutral Tone-curve Look
+    process_space: ACES - ACES2065-1
     description: |
       This LMT emulates a neutral version of the tonal appearance of the SONY S-Gamut3.Cine DRT when used with ACES 2.0. It does not change colorimetry.
-    process_space: ACES - ACES2065-1
+
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-SONY_Neutral_Tone.a2.v1
+
+      AMF Components
+      --------------
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-SONY_Neutral_Tone.a2.v1
     transform: !<FileTransform> {src: ACES2Looks/CLF/T-SONY_Neutral_Tone.clf}
 
   - !<Look>
     name: ACES2Looks LMT - SONY Tone-curve Look
+    process_space: ACES - ACES2065-1
     description: |
       This LMT emulates the tonal appearance of the SONY S-Gamut3.Cine DRT when used with ACES 2.0. It does not change colorimetry.
-    process_space: ACES - ACES2065-1
+
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-SONY_Tone.a2.v1
+
+      AMF Components
+      --------------
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-SONY_Tone.a2.v1
     transform: !<FileTransform> {src: ACES2Looks/CLF/T-SONY_Tone.clf}
 

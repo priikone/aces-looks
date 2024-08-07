@@ -20,7 +20,7 @@ __copyright__ = 'Copyright (C) 2021 Pekka Riikonen'
 __email__ = 'priikone@iki.fi'
 
 __major_version__ = '0'
-__minor_version__ = '3'
+__minor_version__ = '4'
 __change_version__ = '0'
 __version__ = '.'.join((__major_version__, __minor_version__,
                         __change_version__))
@@ -70,18 +70,18 @@ def clfprint(filename):
                     copyr = sub.text
 
     if acesname:
-        buf += "%15s: %s\n" % ('Name', acesname)
+        buf += "%16s: %s\n" % ('Name', acesname)
     elif name:
-        buf += "%15s: %s\n" % ('Name', name)
-    buf += "%15s: %s\n" % ('Description', desc)
+        buf += "%16s: %s\n" % ('Name', name)
+    buf += "%16s: %s\n" % ('Description', desc)
     if revision:
-        buf += "%15s: %s\n" % ('Revision', revision)
+        buf += "%16s: %s\n" % ('Revision', revision)
     if acestrid:
-        buf += "%15s: %s\n" % ('ACESTransformID', acestrid)
+        buf += "%16s: %s\n" % ('ACEStransformID', acestrid)
     if copyr:
-        buf += "%15s: %s\n" % ('Copyright', copyr)
+        buf += "%16s: %s\n" % ('Copyright', copyr)
     if idesc:
-        buf += "%15s: %s\n" % ('Input', idesc)
+        buf += "%16s: %s\n" % ('Input', idesc)
 
     for child in root:
         tag = re.sub(r'^{.*}', '', child.tag)
@@ -91,13 +91,13 @@ def clfprint(filename):
         for sub in child:
             stag = re.sub(r'^{.*}', '', sub.tag)
             if stag != 'Description':
-                buf += "%15s: %s\n" % (tag, 'No description')
+                buf += "%16s: %s\n" % (tag, 'No description')
             else:
-                buf += "%15s: %s\n" % (tag, sub.text)
+                buf += "%16s: %s\n" % (tag, sub.text)
             break
 
     if odesc:
-        buf += "%15s: %s" % ('Output', odesc)
+        buf += "%16s: %s" % ('Output', odesc)
 
     buf += "\n"
     return buf
@@ -116,6 +116,7 @@ def clf2ocio(filename, aces_ver=2):
     name = root.attrib['name'] if 'name' in root.attrib else ''
     acesname = ''
     desc = ''
+    acestrid = ''
 
     # Parse the general information before printing, stripping out
     # the namespace which ET always includes in the tag.
@@ -128,16 +129,25 @@ def clf2ocio(filename, aces_ver=2):
                 stag = re.sub(r'^{.*}', '', sub.tag)
                 if stag == 'ACESuserName':
                     acesname = sub.text
+                elif stag == 'ACEStransformID':
+                    acestrid = sub.text
 
     if acesname:
         buf += "    %s: %s\n" % ('name', acesname)
     elif name:
         buf += "    %s: %s\n" % ('name', name)
 
+    buf += '    process_space: ACES - ACES2065-1\n'
     if desc:
         buf += '    description: |\n'
         buf += '      %s\n' % desc
-    buf += '    process_space: ACES - ACES2065-1\n'
+        if acestrid:
+            buf += '\n'
+            buf += '      ACEStransformID: %s\n' % acestrid
+            buf += '\n'
+            buf += '      AMF Components\n'
+            buf += '      --------------\n'
+            buf += '      ACEStransformID: %s\n' % acestrid
     buf += '    transform: !<FileTransform> {src: ACES%dLooks/CLF/%s}\n' % (aces_ver, filename)
 
     return buf
@@ -325,7 +335,7 @@ def main():
     p = optparse.OptionParser(
         description='',
         prog='clfutil',
-        version='0.3.0',
+        version='0.4.0',
         usage='clfutil [options] [info|dctl|ocio] <clf-file>')
 
     p.add_option('--lut-scaling', '-s', nargs=0, default=False)
