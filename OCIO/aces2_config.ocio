@@ -30,6 +30,12 @@ looks:
     process_space: ACES - ACES2065-1
     description: |
       This LMT emulates the tonal appearance of the ARRI REVEAL DRT (2022) when used with ACES 2.0. It does not change colorimetry.
+
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-ARRI_REVEAL_Tone.a2.v1
+
+      AMF Components
+      --------------
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-ARRI_REVEAL_Tone.a2.v1
     transform: !<FileTransform> {src: ACES2Looks/CLF/T-ARRI_REVEAL_Tone.clf}
 
   - !<Look>

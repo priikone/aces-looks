@@ -46,6 +46,7 @@
             Name: ACES2Looks LMT - ARRI REVEAL Tone-curve Look
      Description: This LMT emulates the tonal appearance of the ARRI REVEAL DRT (2022) when used with ACES 2.0. It does not change colorimetry.
         Revision: 2.0-1
+ ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-ARRI_REVEAL_Tone.a2.v1
        Copyright: https://github.com/priikone/aces-looks
            Input: ACES2065-1 AP0 [full dynamic range]
           Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)

@@ -1,0 +1,174 @@
+set cut_paste_input [stack 0]
+version 15.0 v5
+push $cut_paste_input
+Group {
+ name PlankcianLocus
+ selected true
+ xpos -207
+ ypos -72
+ hide_input true
+ postage_stamp true
+ addUserKnob {20 User}
+ addUserKnob {41 presets_dst l dst T GamutConvert_live1.presets_dst}
+}
+ Constant {
+  inputs 0
+  channels rgb
+  name Constant11
+  xpos 10
+  ypos -22
+ }
+ Reformat {
+  type "to box"
+  box_width 2048
+  box_height 2048
+  box_fixed true
+  name ReformatBox4
+  xpos 10
+  ypos 61
+ }
+ Expression {
+  temp_name0 n
+  temp_expr0 input.width/8
+  channel0 {rgba.red rgba.green rgba.blue none}
+  expr0 x/width*(1-y/height)
+  channel3 alpha
+  expr3 1
+  name Expression1
+  xpos 10
+  ypos 98
+ }
+set N4c73a000 [stack 0]
+ Dot {
+  name Dot8
+  xpos 154
+  ypos 102
+ }
+ ColorLookup {
+  lut {master {curve L 0 s0 t0.9499999881 C k x0.308139503 1 s0}
+    red {}
+    green {}
+    blue {}
+    alpha {}}
+  name ColorLookup1
+  xpos 120
+  ypos 147
+ }
+ Dot {
+  name Dot14
+  xpos 154
+  ypos 246
+ }
+push $N4c73a000
+ Multiply {
+  channels rgb
+  value 269
+  name Multiply5
+  label "\[value value]"
+  xpos 10
+  ypos 140
+ }
+ ColorLookup {
+  lut {master {}
+    red {curve C 1.8783474 1.85965741 1.8410753 1.82260251 1.80424976 1.78602886 1.76794314 1.75000143 1.73221421 1.71458244 1.69711792 1.67982578 1.66271067 1.6457777 1.62903571 1.6124835 1.59613538 1.57998943 1.56404996 1.54832447 1.5328095 1.51751649 1.50244594 1.48759735 1.47297573 1.45858264 1.44442391 1.43049574 1.41680288 1.40334678 1.39012623 1.37714779 1.36440396 1.35190022 1.33963728 1.32761216 1.31582856 1.30428183 1.29297352 1.28190565 1.27107596 1.2604804 1.25012183 1.23999798 1.23010659 1.22044563 1.21101499 1.20181489 1.19284034 1.18408906 1.17556167 1.16725397 1.15916491 1.15129638 1.14363372 1.13618886 1.12895167 1.12192106 1.11509454 1.10846853 1.10204577 1.09580922 1.08977199 1.08392429 1.07826447 1.07278681 1.06749392 1.06237841 1.05743873 1.05267084 1.04807138 1.04364109 1.03937256 1.03526449 1.03131545 1.02751946 1.02387333 1.02037668 1.01702523 1.01381445 1.01074362 1.00780725 1.00500631 1.00233305 0.99978602 0.99736285 0.9950608 0.99287677 0.99080539 0.98884678 0.98699367 0.9852494 0.98361033 0.98206747 0.98062134 0.97926998 0.97800934 0.97683728 0.97575116 0.97474778 0.97382426 0.97297859 0.97220623 0.97150886 0.97087657 0.97031689 0.96981871 0.96938527 0.96900952 0.96869147 0.96842706 0.96821606 0.96805781 0.96794283 0.96787858 0.96785843 0.96787864 0.96793604 0.96803701 0.96817231 0.96833968 0.96854311 0.96877253 0.96903455 0.96932232 0.96963543 0.96997368 0.97033387 0.97071254 0.9711163 0.97153723 0.97197378 0.97242606 0.97289121 0.97337079 0.97386622 0.97437072 0.97488332 0.97540969 0.97594237 0.97647977 0.97702706 0.97757769 0.97813445 0.97869468 0.97925854 0.97982538 0.98039114 0.98096472 0.98153675 0.98210776 0.98267955 0.98325121 0.98382008 0.98438704 0.9849571 0.98552132 0.98608243 0.98664182 0.98719966 0.98775077 0.98829895 0.98884273 0.98938417 0.98991877 0.9904511 0.99097681 0.99149919 0.99201453 0.99252397 0.99303031 0.99353105 0.99402624 0.99451613 0.99499857 0.99547589 0.99594522 0.99641174 0.99687338 0.99732745 0.99777603 0.9982177 0.99865389 0.999084 0.99950838 0.99992663 1.00033772 1.00074494 1.00114489 1.00153947 1.00192833 1.00231075 1.00268865 1.00305855 1.00342607 1.00378489 1.00413895 1.00448751 1.00483036 1.00517035 1.00550389 1.00583148 1.00615203 1.00646758 1.00678015 1.00708604 1.00738645 1.00768471 1.00797844 1.0082655 1.00854778 1.00882483 1.00909901 1.00936711 1.00963116 1.00989032 1.0101465 1.01039672 1.01064491 1.01088691 1.0111258 1.01135957 1.01158977 1.01181614 1.01203847 1.01225793 1.01247287 1.01268291 1.01289058 1.01309609 1.01329684 1.01349473 1.0136888 1.0138787 1.01406395 1.01424909 1.01442885 1.01460576 1.01478052 1.01495218 1.01512218 1.01528883 1.01545072 1.01561022 1.01576698 1.01592219 1.01607502 1.01622343 1.01636875 1.0165143 1.01665616 1.01679492 1.0169313 1.01706588 1.01719737 1.01732695 1.01745498 1.01757956 1.01770294 1.01782393 1.01794255 1.0180583 1.01817465 1.01828551 1.01839495 1.01850486 1.01861191 1.01871693 1.01882088 1.01891339}
+    green {curve C 1}
+    blue {curve C 0.00879261 0.00962762 0.010532 0.01151017 0.01256675 0.01370643 0.01493413 0.01625487 0.01767381 0.01919618 0.02082733 0.02257277 0.02443803 0.02642871 0.02855051 0.03080913 0.0332104 0.0357601 0.03846392 0.04132775 0.04435719 0.04755813 0.05093599 0.05449668 0.0582453 0.0621875 0.06632853 0.07067341 0.07522713 0.07999477 0.08498063 0.09018957 0.09562518 0.10129225 0.10719412 0.11333443 0.11971687 0.12634411 0.133219 0.14034435 0.14772213 0.15535444 0.16324303 0.17138906 0.179794 0.18845794 0.197382 0.20656651 0.21601067 0.22571453 0.23567709 0.24589771 0.25637382 0.26710594 0.2780903 0.28932518 0.30080822 0.3125369 0.32450783 0.33671761 0.34916404 0.36183971 0.37474373 0.38787127 0.40121818 0.41477671 0.42854655 0.44251823 0.45668846 0.47105014 0.48559928 0.50033116 0.5152359 0.5303098 0.5455451 0.56093836 0.5764783 0.59215891 0.60797763 0.62392306 0.63999057 0.65616876 0.6724565 0.68884456 0.70532417 0.72188419 0.73852479 0.7552371 0.77200818 0.78883314 0.80570388 0.82261622 0.83956301 0.8565321 0.87351894 0.89051074 0.90751225 0.92450547 0.94148719 0.95845115 0.97538745 0.99229181 1.00915313 1.02597356 1.04273522 1.05944169 1.07608175 1.09265125 1.10914159 1.12555146 1.14187002 1.15809321 1.1742171 1.190238 1.20614767 1.22194457 1.23762202 1.2531724 1.26859927 1.28389311 1.29905295 1.31407428 1.32895291 1.34368753 1.35827363 1.3727088 1.38699389 1.40111876 1.41508293 1.42889357 1.44254065 1.45602405 1.46934104 1.48249614 1.49548101 1.50830269 1.5209527 1.53343177 1.54574537 1.5578897 1.56985986 1.5816654 1.59329891 1.60476208 1.61605716 1.62718153 1.63813758 1.64892519 1.65955138 1.67000985 1.68030369 1.69043732 1.70040607 1.71021223 1.71985734 1.72934508 1.73867714 1.74785423 1.75688136 1.76575518 1.77447391 1.78304338 1.79146802 1.79975164 1.80788386 1.81587982 1.82373333 1.83144975 1.83902776 1.84647095 1.85378456 1.86096811 1.86802399 1.87495112 1.88175035 1.88842535 1.89497983 1.90141833 1.90774179 1.91394711 1.92004013 1.92602086 1.93188739 1.93765306 1.94330883 1.94886208 1.95430994 1.95965815 1.96490622 1.97005856 1.97511387 1.98007631 1.98494554 1.98972344 1.99441445 1.99901712 2.00353193 2.00796437 2.01231384 2.01658392 2.02076721 2.02487659 2.02890825 2.03286695 2.03675175 2.04056406 2.04430199 2.04797506 2.05157685 2.05511236 2.0585804 2.06198287 2.06532407 2.06860161 2.07181907 2.07497644 2.07807779 2.0811162 2.08409977 2.08702946 2.08990335 2.09272337 2.09549189 2.0982089 2.10087585 2.10349345 2.10606146 2.1085825 2.11105394 2.11348104 2.11586332 2.11820364 2.12050176 2.12275648 2.12496805 2.127141 2.12927723 2.13136625 2.13341999 2.13543844 2.13741732 2.13936305 2.1412704 2.1431427 2.14498401 2.14678812 2.14856291 2.1503005 2.15200949 2.15368938 2.15533352 2.15695238 2.15853977 2.16009951 2.16162968 2.16313291 2.16460824 2.16605687 2.16747928 2.16887903 2.17024994 2.1715951 2.17291784 2.17421341 2.17548871 2.17674041 2.17797112 2.17918396 2.18036819 2.18143296}
+    alpha {}}
+  name ColorLookup3
+  label "Planckian Locus 0-269"
+  xpos 10
+  ypos 188
+ }
+ Multiply {
+  inputs 1+1
+  channels rgb
+  value 0
+  maskChannelMask rgba.red
+  invert_mask true
+  name Multiply3
+  label dim
+  xpos 10
+  ypos 236
+  disable true
+ }
+ BlackOutside {
+  name BlackOutside6
+  xpos 10
+  ypos 290
+ }
+ Group {
+  name GamutConvert_live1
+  tile_color 0xcc804eff
+  label "XYZ D65 to ACES AP1"
+  selected true
+  xpos 10
+  ypos 314
+  addUserKnob {20 Params}
+  addUserKnob {35 presets_src l src M {"gamut/ACES AP0" "knobs this \{src_name \"ACES AP0\" src \"0.7347 0.2653 0.0 1.0 0.0001 -0.077 0.32168 0.33767\"\}" "gamut/ACES AP1" "knobs this \{src_name \"ACES AP1\" src \"0.713 0.293 0.165 0.83 0.128 0.044 0.32168 0.33767\"\}" "gamut/Filmlight E-Gamut" "knobs this \{src_name \"Filmlight E-Gamut\" src \"0.8 0.3177 0.18 0.9 0.065 -0.0805 0.3127 0.329\"\}" "gamut/DaVinci Wide Gamut" "knobs this \{src_name \"DaVinci Wide Gamut\" src \"0.8 0.313 0.1682 0.9877 0.079 -0.1155 0.3127 0.329\"\}" gamut/Rec709 "knobs this \{src_name \"Rec709\" src \"0.64 0.33 0.3 0.6 0.15 0.06 0.3127 0.329\"\}" gamut/Rec2020 "knobs this \{src_name \"Rec2020\" src \"0.708 0.292 0.17 0.797 0.131 0.046 0.3127 0.329\"\}" gamut/P3D60 "knobs this \{src_name \"P3D60\" src \"0.68 0.32 0.265 0.69 0.15 0.06 0.321626 0.337737\"\}" gamut/P3D65 "knobs this \{src_name \"P3D65\" src \"0.68 0.32 0.265 0.69 0.15 0.06 0.3127 0.329\"\}" gamut/P3DCI "knobs this \{src_name \"P3DCI\" src \"0.68 0.32 0.265 0.69 0.15 0.06 0.314 0.351\"\}" "gamut/Arri Alexa Wide Gamut v3" "knobs this \{src_name \"Arri Alexa Wide Gamut v3\" src \"0.684 0.313 0.221 0.848 0.0861 -0.102 0.3127 0.329\"\}" "gamut/Arri Alexa Wide Gamut v4" "knobs this \{src_name \"Arri Alexa Wide Gamut v4\" src \"0.7347 0.2653 0.1424 0.8576 0.0991 -0.0308 0.3127 0.329\"\}" "gamut/RED Wide Gamut RGB" "knobs this \{src_name \"RED Wide Gamut RGB\" src \"0.780308 0.304253 0.121595 1.493994 0.095612 -0.084589 0.3127 0.329\"\}" "gamut/GoPro Protune Native" "knobs this \{src_name \"GoPro Protune Native\" src \"0.69848046 0.19302645 0.32955538 1.02459662 0.10844263 -0.03467857 0.3127 0.329\"\}" "gamut/Canon Cinema Gamut" "knobs this \{src_name \"Canon Cinema Gamut\" src \"0.74 0.27 0.17 1.14 0.08 -0.1 0.3127 0.329\"\}" "gamut/Sony SGamut3" "knobs this \{src_name \"Sony SGamut3\" src \"0.73 0.28 0.14 0.855 0.1 -0.05 0.3127 0.329\"\}" "gamut/Sony SGamut3.Cine" "knobs this \{src_name \"Sony SGamut3.Cine\" src \"0.766 0.275 0.225 0.8 0.089 -0.087 0.3127 0.329\"\}" "gamut/Panasonic V-Gamut" "knobs this \{src_name \"Panasonic V-Gamut\" src \"0.73 0.28 0.165 0.84 0.1 -0.03 0.3127 0.329\"\}" "gamut/DJI D-Gamut" "knobs this \{src_name \"DJI D-Gamut\" src \"0.71 0.31 0.21 0.88 0.09 -0.08 0.3127 0.329\"\}" "gamut/Fujifilm F-Gamut" "knobs this \{src_name \"Fujifilm F-Gamut\" src \"0.708 0.292 0.17 0.797 0.131 0.046 0.3127 0.329\"\}" "gamut/Nikon N-Gamut" "knobs this \{src_name \"Nikon N-Gamut\" src \"0.708 0.292 0.17 0.797 0.131 0.046 0.3127 0.329\"\}" "gamut/Blackmagic Wide Gamut" "knobs this \{src_name \"Blackmagic Wide Gamut\" src \"0.7177215 0.3171181 0.228041 0.861569 0.1005841 -0.0820452 0.3127 0.329\"\}" "gamut/Adobe RGB" "knobs this \{src_name \"Adobe RGB\" src \"0.64 0.33 0.21 0.71 0.15 0.06 0.3127 0.329\"\}" "gamut/Adobe WideGamutRGB" "knobs this \{src_name \"Adobe WideGamutRGB\" src \"0.7347 0.2653 0.1152 0.8264 0.1566 0.0177 0.3457 0.3585\"\}" gamut/ProPhotoRGB "knobs this \{src_name \"ProPhotoRGB\" src \"0.734699 0.265301 0.159597 0.840403 0.036598 0.000105 0.345704 0.358540\"\}" "" "" "" "" "" ""}}
+  addUserKnob {1 src_name l "" -STARTLINE}
+  src_name "XYZ D65"
+  addUserKnob {41 src l " " T _knobchanged_.src}
+  addUserKnob {35 presets_dst l dst M {gamut/XYZ "knobs this \{dst_name \"XYZ\" dst \"\"\}" "gamut/XYZ D65" "knobs this \{dst_name \"XYZ D65\" dst \"1 0 0 1 0 0 0.3127 0.329\"\}" "gamut/ACES AP0" "knobs this \{dst_name \"ACES AP0\" dst \"0.7347 0.2653 0.0 1.0 0.0001 -0.077 0.32168 0.33767\"\}" "gamut/ACES AP1" "knobs this \{dst_name \"ACES AP1\" dst \"0.713 0.293 0.165 0.83 0.128 0.044 0.32168 0.33767\"\}" "gamut/Filmlight E-Gamut" "knobs this \{dst_name \"Filmlight E-Gamut\" dst \"0.8 0.3177 0.18 0.9 0.065 -0.0805 0.3127 0.329\"\}" "gamut/DaVinci Wide Gamut" "knobs this \{dst_name \"DaVinci Wide Gamut\" dst \"0.8 0.313 0.1682 0.9877 0.079 -0.1155 0.3127 0.329\"\}" gamut/Rec709 "knobs this \{dst_name \"Rec709\" dst \"0.64 0.33 0.3 0.6 0.15 0.06 0.3127 0.329\"\}" gamut/Rec2020 "knobs this \{dst_name \"Rec2020\" dst \"0.708 0.292 0.17 0.797 0.131 0.046 0.3127 0.329\"\}" gamut/P3D60 "knobs this \{dst_name \"P3D60\" dst \"0.68 0.32 0.265 0.69 0.15 0.06 0.321626 0.337737\"\}" gamut/P3D65 "knobs this \{dst_name \"P3D65\" dst \"0.68 0.32 0.265 0.69 0.15 0.06 0.3127 0.329\"\}" gamut/P3DCI "knobs this \{dst_name \"P3DCI\" dst \"0.68 0.32 0.265 0.69 0.15 0.06 0.314 0.351\"\}" "gamut/Arri Alexa Wide Gamut v3" "knobs this \{dst_name \"Arri Alexa Wide Gamut v3\" dst \"0.684 0.313 0.221 0.848 0.0861 -0.102 0.3127 0.329\"\}" "gamut/Arri Alexa Wide Gamut v4" "knobs this \{dst_name \"Arri Alexa Wide Gamut v4\" dst \"0.7347 0.2653 0.1424 0.8576 0.0991 -0.0308 0.3127 0.329\"\}" "gamut/RED Wide Gamut RGB" "knobs this \{dst_name \"RED Wide Gamut RGB\" dst \"0.780308 0.304253 0.121595 1.493994 0.095612 -0.084589 0.3127 0.329\"\}" "gamut/GoPro Protune Native" "knobs this \{dst_name \"GoPro Protune Native\" dst \"0.69848046 0.19302645 0.32955538 1.02459662 0.10844263 -0.03467857 0.3127 0.329\"\}" "gamut/Canon Cinema Gamut" "knobs this \{dst_name \"Canon Cinema Gamut\" dst \"0.74 0.27 0.17 1.14 0.08 -0.1 0.3127 0.329\"\}" "gamut/Sony SGamut3" "knobs this \{dst_name \"Sony SGamut3\" dst \"0.73 0.28 0.14 0.855 0.1 -0.05 0.3127 0.329\"\}" "gamut/Sony SGamut3.Cine" "knobs this \{dst_name \"Sony SGamut3.Cine\" dst \"0.766 0.275 0.225 0.8 0.089 -0.087 0.3127 0.329\"\}" "gamut/Panasonic V-Gamut" "knobs this \{dst_name \"Panasonic V-Gamut\" dst \"0.73 0.28 0.165 0.84 0.1 -0.03 0.3127 0.329\"\}" "gamut/DJI D-Gamut" "knobs this \{dst_name \"DJI D-Gamut\" dst \"0.71 0.31 0.21 0.88 0.09 -0.08 0.3127 0.329\"\}" "gamut/Fujifilm F-Gamut" "knobs this \{dst_name \"Fujifilm F-Gamut\" dst \"0.708 0.292 0.17 0.797 0.131 0.046 0.3127 0.329\"\}" "gamut/Nikon N-Gamut" "knobs this \{dst_name \"Nikon N-Gamut\" dst \"0.708 0.292 0.17 0.797 0.131 0.046 0.3127 0.329\"\}" "gamut/Blackmagic Wide Gamut" "knobs this \{dst_name \"Blackmagic Wide Gamut\" dst \"0.7177215 0.3171181 0.228041 0.861569 0.1005841 -0.0820452 0.3127 0.329\"\}" "gamut/Adobe RGB" "knobs this \{dst_name \"Adobe RGB\" dst \"0.64 0.33 0.21 0.71 0.15 0.06 0.3127 0.329\"\}" "gamut/Adobe WideGamutRGB" "knobs this \{dst_name \"Adobe WideGamutRGB\" dst \"0.7347 0.2653 0.1152 0.8264 0.1566 0.0177 0.3457 0.3585\"\}" gamut/ProPhotoRGB "knobs this \{dst_name \"ProPhotoRGB\" dst \"0.734699 0.265301 0.159597 0.840403 0.036598 0.000105 0.345704 0.358540\"\}" "" "" "" "" ""}}
+  addUserKnob {1 dst_name l "" -STARTLINE}
+  dst_name "ACES AP1"
+  addUserKnob {41 dst l " " T _knobchanged_.dst}
+  addUserKnob {41 cat T _knobchanged_.cat}
+  addUserKnob {26 ""}
+  addUserKnob {41 invert T _knobchanged_.invert}
+  addUserKnob {6 print_mtx l print t "print a few useful representations of the matrix ni the script editor, for OCIO MatrixTransforms, spimtx files, etc" -STARTLINE}
+  addUserKnob {41 matrix T ColorMatrix.matrix}
+  addUserKnob {22 create_colormatrix l "Create ColorMatrix" t "create ColorMatrix node using calculated 3x3 matrix" -STARTLINE T "from __future__ import with_statement\nnode = nuke.thisNode()\nwith nuke.root():\n    nukescripts.clear_selection_recursive()\n    m = nuke.createNode('ColorMatrix')\n    m.setXYpos(node.xpos()-120, node.ypos())\n    m\['matrix'].setValue(node\['matrix'].getValue())\n    m\['label'].setValue(node\['label'].getValue())"}
+ }
+  Input {
+   inputs 0
+   name Input
+   xpos -40
+   ypos 206
+  }
+  Dot {
+   name _knobchanged_
+   knobChanged "import nuke\n\ndef matmul(m0, m1):\n  # multiply two square matrices\n  return \[\[sum(a*b for a,b in zip(r, c)) for c in zip(*m1)] for r in m0]\n\ndef vdot(m, v):\n  # multiply AxA matrix by Ax1 vector\n  return \[sum(x*y for x,y in zip(r,v)) for r in m]\n\ndef transpose(m):\n  # transpose matrix m by swapping rows and cols\n  return \[list(r) for r in zip(*m)]\n\ndef zeros(l):\n  # create square matrix of size l\n  return \[\[0.0]*l for i in range(l)]\n\ndef diag(m, v):\n  # set diagonal row of matrix m to vector v or float v\n  if isinstance(v, float): \n    v = \[v]*len(m)\n  for p in range(len(m)):\n    m\[p]\[p] = v\[p]\n  return m\n\ndef identity(l):\n  # return identity matrix of size l\n  return diag(zeros(3), 1.0)\n\ndef det(m):\n  # calculate determinant of 3x3 matrix m\n  return m\[0]\[0]*(m\[1]\[1]*m\[2]\[2]-m\[2]\[1]*m\[1]\[2])-m\[0]\[1]*(m\[1]\[0]*m\[2]\[2]-m\[1]\[2]*m\[2]\[0])+m\[0]\[2]*(m\[1]\[0]*m\[2]\[1]-m\[1]\[1]*m\[2]\[0])\n\ndef inv(m):\n  # invert 3x3 matrix m\n  d = det(m)\n  if d == 0.0:\n    return m\n  i = zeros(3)\n  i\[0]\[0] = (m\[1]\[1]*m\[2]\[2]-m\[2]\[1]*m\[1]\[2])/d\n  i\[0]\[1] = (m\[0]\[2]*m\[2]\[1]-m\[0]\[1]*m\[2]\[2])/d\n  i\[0]\[2] = (m\[0]\[1]*m\[1]\[2]-m\[0]\[2]*m\[1]\[1])/d\n  i\[1]\[0] = (m\[1]\[2]*m\[2]\[0]-m\[1]\[0]*m\[2]\[2])/d\n  i\[1]\[1] = (m\[0]\[0]*m\[2]\[2]-m\[0]\[2]*m\[2]\[0])/d\n  i\[1]\[2] = (m\[1]\[0]*m\[0]\[2]-m\[0]\[0]*m\[1]\[2])/d\n  i\[2]\[0] = (m\[1]\[0]*m\[2]\[1]-m\[2]\[0]*m\[1]\[1])/d\n  i\[2]\[1] = (m\[2]\[0]*m\[0]\[1]-m\[0]\[0]*m\[2]\[1])/d\n  i\[2]\[2] = (m\[0]\[0]*m\[1]\[1]-m\[1]\[0]*m\[0]\[1])/d\n  return i\n\ndef flatten(l):\n  # flatten multidimensional list into one dimensional list\n  return sum(l, \[])\n\ndef npm(ch):\n  # Calculate the Normalized Primaries Matrix for the specified chromaticities\n  # Adapted from SMPTE Recommended Practice - Derivation of Basic Television Color Equations\n  # http://doi.org/10.5594/S9781614821915\n  if len(ch) == 8: # handle flat list\n    ch = \[\[ch\[0], ch\[1]], \[ch\[2], ch\[3]], \[ch\[4], ch\[5]], \[ch\[6], ch\[7]]]\n  for c in ch:\n    c.append(1.0-c\[0]-c\[1]) \n  P = transpose(\[ch\[0], ch\[1], ch\[2]])\n  W = \[ch\[3]\[0] / ch\[3]\[1], 1.0, ch\[3]\[2] / ch\[3]\[1]]\n  C = vdot(inv(P), W)\n  C = diag(zeros(3), C)\n  return matmul(P, C)\n\ndef cat(ws, wd, method='bradford'):\n  # Calculate a von Kries style chromatic adaptation transform matrix given xy chromaticities for src and dst white\n  # Source: Mark D. Fairchild - 2013 - Color Appearance Models Third Edition p. 181-186\n  # Source: Bruce Lindbloom - Chromatic Adaptation - http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html\n  if ws == wd: # src and dst are equal, nothing to do\n    return identity(3)\n  if method == 'bradford':\n    mcat = \[\[0.8951, 0.2664, -0.1614], \[-0.7502, 1.7135, 0.0367], \[0.0389, -0.0685, 1.0296]]\n  elif method == 'cat02':\n    mcat = \[\[0.7328, 0.4296, -0.1624], \[-0.7036, 1.6975, 0.0061], \[0.003, 0.0136, 0.9834]]\n  else:\n    mcat = identity(3)\n  \n  def xy_to_XYZ(xy):\n    # convert xy chromaticity to XYZ tristimulus with Y=1.0\n    return \[xy\[0]/xy\[1], 1.0, (1.0-xy\[0]-xy\[1])/xy\[1]]\n  \n  sXYZ = xy_to_XYZ(ws)\n  dXYZ = xy_to_XYZ(wd)\n  \n  s_cone_mtx = vdot(mcat, sXYZ)\n  d_cone_mtx = vdot(mcat, dXYZ)\n  \n  smat = diag(zeros(3), \[a/b for a,b in zip(d_cone_mtx, s_cone_mtx)])\n  nmtx = matmul(inv(mcat), smat)\n  return matmul(nmtx, mcat)\n\ndef wp(ch):\n  # return whitepoint of chromaticities array\n  return ch\[-2:]\n\ndef is_xyz(ch):\n  # test if ch is XYZ\n  prims = ch\[:-2]\n  return True if prims == \[1, 0, 0, 1, 0, 0] else False\n\ndef calc_mtx(ch0, ch1, method='bradford'):\n  # calculate 3x3 matrix to convert gamut ch0 to ch1, with cat\n  if not ch1:\n    return npm(ch0)\n  rgb0_to_xyz = identity(3) if is_xyz(ch0) else npm(ch0)\n  rgb1_to_xyz = identity(3) if is_xyz(ch1) else npm(ch1)\n  xyz_to_cat = cat(wp(ch0), wp(ch1), method=method)\n  rgb0_to_cat = matmul(xyz_to_cat, rgb0_to_xyz)\n  rgb0_to_rgb1 = matmul(inv(rgb1_to_xyz), rgb0_to_cat)\n  return rgb0_to_rgb1\n\n\n\nnode = nuke.thisParent()\n\ndef get_ch(k):\n  # get chromaticities from knob name k\n  ch_str = node\[k].getValue()\n  if ' ' in ch_str:\n    chs = ch_str.split(' ')\n    if not len(chs) == 8:\n      print('Error: need 8 space-separated float xy coordinates for RGBW')\n      return None\n    else:\n      ch = list()\n      for c in chs:\n        try:\n          ch.append(float(c))\n        except ValueError:\n          print('Error: could not convert \{0\} to float'.format(c))\n          return None\n      return ch\n  else:\n    return None\n\ndef print_mtx(mtx):\n  label = node\['label'].getValue()\n  \n  # round to 12 digits of precision\n  mtx_str = \[format(round(v, 12), '.12g') for v in flatten(mtx)]\n  \n  # print some useful representations of the matrix\n  # an ocio matrixtransform\n  mtx_str_pad = mtx_str\[0:3]+\['0']+mtx_str\[3:6]+\['0']+mtx_str\[6:9]+\['0']*4+\['1']\n  mtx_string = ', '.join(map(str, mtx_str_pad))\n  ocio_matrixtransform_string = '!<MatrixTransform> \{\{matrix: \[\{0\}]\}\}'.format(mtx_string)\n  print('\{0\} - OCIO MatrixTransform\\n\{1\}\\n'.format(label, ocio_matrixtransform_string))\n  \n  # an spimtx file\n  spimtx_string = '\{0\} 0\\n\{1\} 0\\n\{2\} 0'.format(\n    ' '.join(mtx_str\[0:3]),\n    ' '.join(mtx_str\[3:6]),\n    ' '.join(mtx_str\[6:9]),\n  )\n  print('\{0\}.spimtx\\n\{1\}\\n'.format(label, spimtx_string))\n\ndef reset():\n  # reset matrix\n  node\['matrix'].setValue(flatten(identity(3)))\n  \ndef calc():\n  # gather node info\n  src_ch = get_ch('src')\n  if not src_ch:\n    reset()\n    return\n  dst_ch = get_ch('dst')\n  cat_method = node\['cat'].value()\n  mtx = calc_mtx(src_ch, dst_ch, method=cat_method)\n  if node\['invert'].getValue():\n    mtx = inv(mtx)\n  node\['matrix'].setValue(flatten(mtx))\n  label = '\{1\} to \{0\}' if node\['invert'].getValue() else '\{0\} to \{1\}'\n  label = label.format(node\['src_name'].getValue(), node\['dst_name'].getValue())\n  node\['label'].setValue(label)\n  if node\['print_mtx'].getValue():\n    print_mtx(mtx)\n    \ncalc()"
+   tile_color 0xc1490000
+   note_font "Helvetica Bold"
+   note_font_size 24
+   note_font_color 0xff
+   xpos -6
+   ypos 234
+   addUserKnob {20 Params}
+   addUserKnob {1 src l " " t "source gamut chromaticities: rgbw"}
+   src "1 0 0 1 0 0 0.3127 0.329"
+   addUserKnob {1 dst l " " t "destination gamut chromaticities: rgbw"}
+   dst "0.713 0.293 0.165 0.83 0.128 0.044 0.32168 0.33767"
+   addUserKnob {83 cat M {bradford cat02 none}}
+   cat cat02
+   addUserKnob {6 invert t "invert matrix direction" +STARTLINE}
+  }
+  ColorMatrix {
+   matrix {
+       {1.658854308 -0.3118569754 -0.2431560071}
+       {-0.6622832871 1.612199571 0.0158591266}
+       {0.01148056646 -0.009236324924 0.9166865134}
+     }
+   name ColorMatrix
+   note_font Helvetica
+   xpos -40
+   ypos 255
+  }
+  Output {
+   name Output
+   xpos -40
+   ypos 302
+  }
+ end_group
+ Output {
+  name Output1
+  xpos 10
+  ypos 359
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 11
+  ypos -65
+ }
+end_group

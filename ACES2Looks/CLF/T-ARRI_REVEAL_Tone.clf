@@ -5,6 +5,7 @@
     <OutputDescriptor>ACES2065-1 AP0 [full dynamic range]</OutputDescriptor>
     <Info>
         <ACESuserName>ACES2Looks LMT - ARRI REVEAL Tone-curve Look</ACESuserName>
+        <ACEStransformID>urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-ARRI_REVEAL_Tone.a2.v1</ACEStransformID>
         <Revision>2.0-1</Revision>
         <Copyright>https://github.com/priikone/aces-looks</Copyright>
     </Info>
