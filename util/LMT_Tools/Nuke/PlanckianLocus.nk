@@ -4,12 +4,14 @@ push $cut_paste_input
 Group {
  name PlankcianLocus
  selected true
- xpos -207
- ypos -72
+ xpos -221
+ ypos -109
  hide_input true
  postage_stamp true
  addUserKnob {20 User}
  addUserKnob {41 presets_dst l dst T GamutConvert_live1.presets_dst}
+ addUserKnob {6 to_black l "gradient to black" +STARTLINE}
+ addUserKnob {6 crop +STARTLINE}
 }
  Constant {
   inputs 0
@@ -38,7 +40,7 @@ Group {
   xpos 10
   ypos 98
  }
-set N4c73a000 [stack 0]
+set N67952400 [stack 0]
  Dot {
   name Dot8
   xpos 154
@@ -59,7 +61,7 @@ set N4c73a000 [stack 0]
   xpos 154
   ypos 246
  }
-push $N4c73a000
+push $N67952400
  Multiply {
   channels rgb
   value 269
@@ -89,12 +91,16 @@ push $N4c73a000
   label dim
   xpos 10
   ypos 236
-  disable true
+  disable {{!parent.to_black}}
  }
- BlackOutside {
-  name BlackOutside6
+ Crop {
+  box {0 0 2048 100}
+  reformat true
+  crop false
+  name Crop1
   xpos 10
-  ypos 290
+  ypos 272
+  disable {{!parent.crop}}
  }
  Group {
   name GamutConvert_live1
