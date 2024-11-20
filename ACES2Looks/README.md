@@ -1,5 +1,25 @@
 # Available LMTs for ACES2
 
+## CLF/T-ACES1_SSTS_Tone.clf
+
+```
+            Name: ACES2Looks LMT - ACES1 SSTS (HDR) Tone-curve Look
+     Description: This LMT emulates the tonal appearance of the ACES 1.3 SSTS tonescale (HDR) when used with ACES 2.0. It does not change colorimetry.
+        Revision: 2.0-1
+ ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-ACES1_SSTS_Tone.a2.v1
+       Copyright: https://github.com/priikone/aces-looks
+           Input: ACES2065-1 AP0 [full dynamic range]
+          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
+           Range: Clamp to max 65504
+             Log: Convert linear to ACEScct log
+           Range: Scale full ACEScct log range to 0-1 range
+           LUT1D: Approximate ACES1 SSTS (HDR) Tone curve with full ACEScct output
+             Log: Convert ACEScct log to linear
+          Matrix: Convert ACEScg (AP1) to ACES2065-1 (AP0)
+           Range: Clamp to max 65504
+          Output: ACES2065-1 AP0 [full dynamic range]
+```
+
 ## CLF/T-ACES1_Tone.clf
 
 ```

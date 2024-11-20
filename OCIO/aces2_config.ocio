@@ -1,5 +1,18 @@
 looks:
   - !<Look>
+    name: ACES2Looks LMT - ACES1 SSTS (HDR) Tone-curve Look
+    process_space: ACES - ACES2065-1
+    description: |
+      This LMT emulates the tonal appearance of the ACES 1.3 SSTS tonescale (HDR) when used with ACES 2.0. It does not change colorimetry.
+
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-ACES1_SSTS_Tone.a2.v1
+
+      AMF Components
+      --------------
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.T-ACES1_SSTS_Tone.a2.v1
+    transform: !<FileTransform> {src: ACES2Looks/CLF/T-ACES1_SSTS_Tone.clf}
+
+  - !<Look>
     name: ACES2Looks LMT - ACES1 Tone-curve Look
     process_space: ACES - ACES2065-1
     description: |
