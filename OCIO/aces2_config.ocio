@@ -1,5 +1,31 @@
 looks:
   - !<Look>
+    name: ACESLooks LMT - ACES1 Colorimetric LMT
+    process_space: ACES - ACES2065-1
+    description: |
+      This LMT emulates the colorimetry of the ACES 1.3 when used with ACES 2.0. Colorimetric LMT changes scene colorimetry, but doesn't change contrast or exposure. It retains saturation across the entire luminance range.
+
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES1Looks.C-ACES1.a2.v1
+
+      AMF Components
+      --------------
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES1Looks.C-ACES1.a2.v1
+    transform: !<FileTransform> {src: ACES2Looks/CLF/C-ACES1.clf}
+
+  - !<Look>
+    name: ACESLooks LMT - ACES1 Look
+    process_space: ACES - ACES2065-1
+    description: |
+      This LMT emulates the look of the ACES 1.3 DRT when used with ACES 2.0 and Rec.709 Output Transform. May also be used with Rec.2100 but doesn't match the ACES 1.3 Rec.2100 look. This LMT doesn't compress the gamut. This LMT is the concatenation of T-ACES1_Tone and C-ACES1 LMTs.
+
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.M-ACES1.a2.v1
+
+      AMF Components
+      --------------
+      ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.M-ACES1.a2.v1
+    transform: !<FileTransform> {src: ACES2Looks/CLF/M-ACES1.clf}
+
+  - !<Look>
     name: ACES2Looks LMT - ACES1 SSTS (HDR) Tone-curve Look
     process_space: ACES - ACES2065-1
     description: |

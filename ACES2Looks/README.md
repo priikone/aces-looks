@@ -1,5 +1,47 @@
 # Available LMTs for ACES2
 
+## CLF/C-ACES1.clf
+
+```
+            Name: ACESLooks LMT - ACES1 Colorimetric LMT
+     Description: This LMT emulates the colorimetry of the ACES 1.3 when used with ACES 2.0. Colorimetric LMT changes scene colorimetry, but doesn't change contrast or exposure. It retains saturation across the entire luminance range.
+        Revision: 2.0-1
+ ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES1Looks.C-ACES1.a2.v1
+       Copyright: https://github.com/priikone/aces-looks
+           Input: ACES2065-1 AP0 [full dynamic range]
+          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
+           Range: Clamp to max 65504.0
+             Log: Convert linear to ACEScct log
+           Range: Scale full ACEScct range for LUT3D input range
+           LUT3D: Emulate ACES1 colorimetry
+             Log: Convert ACEScct log to linear
+          Matrix: Convert ACEScg (AP1) to ACES2065-1 (AP0)
+           Range: Clamp to max 65504.0
+          Output: ACES2065-1 AP0 [21 stops dynamic range]
+```
+
+## CLF/M-ACES1.clf
+
+```
+            Name: ACESLooks LMT - ACES1 Look
+     Description: This LMT emulates the look of the ACES 1.3 DRT when used with ACES 2.0 and Rec.709 Output Transform. May also be used with Rec.2100 but doesn't match the ACES 1.3 Rec.2100 look. This LMT doesn't compress the gamut. This LMT is the concatenation of T-ACES1_Tone and C-ACES1 LMTs.
+        Revision: 2.0-1
+ ACEStransformID: urn:ampas:aces:transformId:v2.0:Look.ACES2Looks.M-ACES1.a2.v1
+       Copyright: https://github.com/priikone/aces-looks
+           Input: ACES2065-1 AP0 [full dynamic range]
+          Matrix: Convert ACES2065-1 (AP0) to ACEScg (AP1)
+           Range: Clamp to max 65504.0
+             Log: Convert linear to ACEScct log
+           Range: Scale full ACEScct log range to 0-1 range
+           LUT1D: Approximate ACES1 tone curve with full ACEScct output (T-ACES1_Tone)
+           Range: Scale full ACEScct range for LUT3D input range
+           LUT3D: Emulate ACES1 colorimetry (C-ACES1)
+             Log: Convert ACEScct log to linear
+          Matrix: Convert ACEScg (AP1) to ACES2065-1 (AP0)
+           Range: Clamp to max 65504.0
+          Output: ACES2065-1 AP0 [21 stops dynamic range]
+```
+
 ## CLF/T-ACES1_SSTS_Tone.clf
 
 ```

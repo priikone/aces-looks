@@ -1,6 +1,6 @@
 # LMTs for ACES
 
-ACESLooks is a set of LMTs for ACES versions 1.1, 1.2 and 1.3.  The purpose of the LMTs is to provide a sensible starting point for color grading, rather than providing a *final look* as looks/LUTs often do.
+ACESLooks is a set of LMTs for ACES versions 2.0 and 1.3.  The purpose of the LMTs is to provide a sensible starting point for color grading, rather than providing a *final look* as looks/LUTs often do.
 All the LMTs can be used anywhere in the grading stack/node tree.  All the LMTs are high dynamic range (20+ stops) and have wide gamut (ACEScg AP1).  The LMTs are available as
 [CLF v3 files](https://acescentral.com/knowledge-base-2/common-lut-format-clf/), Davinci CTL (DCTL) files, and as 3D and 1D LUTs (for most of them).
 
@@ -24,15 +24,17 @@ The following emulation LMTs are available:
 
 For all emulation LMTs, equivalent colorimetric LMT exists as well.
 
-See [ACESLooks](ACES1Looks/) directory for all LMTs and see [Images](img/) for more example images and comparison images for emulation LMTs.
+See [ACES2Looks](ACES2Looks/) and [ACES1Looks](ACES1Looks/) directories for all LMTs and see [Images](img/) for more example images and comparison images for emulation LMTs.
 
 ## Installation
 
-Copy the [ACESLooks](ACES1Looks/) directory to your DCC software's LUT/LMT/Look directory.  When upgrading to a new version, remove the old directory and copy it again.
+Copy the [ACES2Looks](ACES2Looks/) directory for ACES2 LMTs, and [ACES1Looks](ACES1Looks/) directory for ACES1 LMTs, to your DCC software's LUT/LMT/Look directory.
+
+When upgrading to a new version of the LMTs, remove the old directory and copy it again.
 
 ### Installation for Davinci Resolve
 
-Copy the [ACESLooks](ACES1Looks/) directory to following location:
+Copy the directory to following location:
 
  - Mac: /Library/Application Support/Blackmagic Design/DaVinci Resolve/LUT
  - Windows: C:\ProgramData\Blackmagic Design\DaVinci Resolve\Support\LUT
@@ -46,7 +48,7 @@ See [OCIO v2 config](OCIO/) file that defines the LMTs as OCIO Looks.
 
 ## Usage
 
-The LMTs are to be applied in ACES2065-1 AP0 linear.
+The CLF LMTs are to be applied in ACES2065-1 AP0 linear.
 
 *NOTE: The LUT versions of the LMTs must be applied in ACEScct AP1 space.*
 
@@ -62,6 +64,25 @@ as they cannot be applied in the ACEScct AP1 timeline space.
 In Nuke version 13.1 and newer the CLF LMTs can be used with the OCIOFileTransform node or OCIOLookTransform node if the LMTs are defined as looks in the OCIO config file.  The
 working space in the OCIOFileTranform node must be changed to ACES2065-1 unless the input is already ACES2065-1, and interpolation must be set to Tetrahedral.
 
+## LMTs for ACES 2.0
+
+The main difference between the LMTs for ACES 2.0 and 1.3 is that ACES 1.3 LMTs may apply additional gamut compression because ACES 1.3 doesn't have a gamut mapper.  However, ACES 2.0 has
+a built-in gamut mapper, so the LMTs do not apply any additional compression.
+
+### Re-creating emulation LMT with colorimetric LMT
+
+All the emulation LMTs for ACES 2.0 are the concatenation of the Tone-curve LMT and the Colorimetric LMT.  You can always re-create the emulation by applying the LMTs separately.  For example,
+to re-create the **M-ACES1.clf** exactly, one would first apply the **T-ACES1_Tone.clf** followed by the **C-ACES1.clf**.
+
+## LMTs for ACES 1.3
+
+### Re-creating emulation LMT with colorimetric LMT
+
+All the current emulation LMTs for ACES 1.3 can be recreated in large part by using Tone-curve LMT and Colorimetric LMT.  For example to re-create the **M-ARRI.clf** one could first apply the
+**T-ARRI_Tone.clf** followed by the **C-ARRI.clf**.  This would create exact match for normal surface colors, but because the colorimetric LMT retains saturation while the DRT emulation doesn't,
+higher luminance and higher saturation colors would differ.  Gamut compression could then be used to get the match much closer, but probably not exact.  On the other hand, this allows to create,
+in this example, ARRI ALF-2 emulation with customizable saturation rolloff.
+
 ### Gamut Compression and Out of Gamut Colors
 
 Out of gamut colors are pixels with negative color values and they can occur in ACES.  None of the LMTs specifically handle negative values and it is recommended to use the ACES 1.3
@@ -71,13 +92,6 @@ gamut colors.
 Gamut compression can be used also creatively.  Since the colorimetric LMTs retain saturation over the entire luminance range they can retain also super saturated colors.  These colors may
 be undesired, too strong or cause clipping with some images.  In these cases gamut compression operator could be used before or after the colorimetric LMTs to achieve the desired look.  This
 issue with super saturated colors is generic to ACES 1.3 and not directly related to the LMTs.
-
-### Re-creating emulation LMT with colorimetric LMT
-
-All the current emulation LMTs can be recreated in large part by using Tone-curve LMT and Colorimetric LMT.  For example to re-create the **M-ARRI.clf** one could first apply the
-**T-ARRI_Tone.clf** followed by the **C-ARRI.clf**.  This would create exact match for normal surface colors, but because the colorimetric LMT retains saturation while the DRT emulation doesn't,
-higher luminance and higher saturation colors would differ.  Gamut compression could then be used to get the match much closer, but probably not exact.  On the other hand, this allows to create,
-in this example, ARRI ALF-2 emulation with customizable saturation rolloff.
 
 ## Resources
 
