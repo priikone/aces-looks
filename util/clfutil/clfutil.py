@@ -16,7 +16,7 @@ import optparse
 import re
 import xml.etree.ElementTree as et
 
-__copyright__ = 'Copyright (C) 2021 Pekka Riikonen'
+__copyright__ = 'Copyright (C) 2021-2025 Pekka Riikonen'
 __email__ = 'priikone@iki.fi'
 
 __major_version__ = '0'
@@ -137,17 +137,14 @@ def clf2ocio(filename, aces_ver=2):
     elif name:
         buf += "    %s: %s\n" % ('name', name)
 
-    buf += '    process_space: ACES - ACES2065-1\n'
+    buf += '    process_space: ACES2065-1\n'
     if desc:
         buf += '    description: |\n'
         buf += '      %s\n' % desc
         if acestrid:
-            buf += '\n'
-            buf += '      ACEStransformID: %s\n' % acestrid
-            buf += '\n'
-            buf += '      AMF Components\n'
-            buf += '      --------------\n'
-            buf += '      ACEStransformID: %s\n' % acestrid
+            buf += '    interchange:\n'
+            buf += '      amf_transform_ids: |\n'
+            buf += '        %s\n' % acestrid
     buf += '    transform: !<FileTransform> {src: ACES%dLooks/CLF/%s}\n' % (aces_ver, filename)
 
     return buf

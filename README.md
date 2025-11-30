@@ -15,7 +15,7 @@ The LMTs are categorized with a filename prefix as follows:
  - **T-XXX**: Tone-curve LMTs.  These LMTs provide different types of tone-curves (contrast curves).  These LMTs can be combined with one or more colorimetric LMTs to create new looks or
    they can be used as-is with default ACES colorimetry.
 
-See [ACES2Looks](ACES2Looks/) and [ACES1Looks](ACES1Looks/) directories for all LMTs and see [Images](img/) for more example images and comparison images for emulation LMTs.
+See [ACES2Looks](ACES2Looks/) and [ACES1Looks](ACES1Looks/) directories for all LMTs and see [Images](#images) for more example images and comparison images for emulation LMTs.
 
 ## Installation
 
