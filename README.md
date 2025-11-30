@@ -15,15 +15,6 @@ The LMTs are categorized with a filename prefix as follows:
  - **T-XXX**: Tone-curve LMTs.  These LMTs provide different types of tone-curves (contrast curves).  These LMTs can be combined with one or more colorimetric LMTs to create new looks or
    they can be used as-is with default ACES colorimetry.
 
-The following emulation LMTs are available:
-
- - [M-ARRI](img/M-ARRI_1.jpg) - emulates the look of the ARRI ALF-2 DRT
- - [M-ARRI_Classic](img/M-ARRI_Classic_1.jpg) - emulates the look of the ARRI K1S1 DRT
- - [M-SONY](img/M-SONY_1.jpg) - emulates the look of the SONY S-Gamut3.Cine DRT
- - [M-RED](img/M-RED_1.jpg) - emulates the look of the RED IPP2 DRT
-
-For all emulation LMTs, equivalent colorimetric LMT exists as well.
-
 See [ACES2Looks](ACES2Looks/) and [ACES1Looks](ACES1Looks/) directories for all LMTs and see [Images](img/) for more example images and comparison images for emulation LMTs.
 
 ## Installation
@@ -69,6 +60,12 @@ working space in the OCIOFileTranform node must be changed to ACES2065-1 unless 
 The main difference between the LMTs for ACES 2.0 and 1.3 is that ACES 1.3 LMTs may apply additional gamut compression because ACES 1.3 doesn't have a gamut mapper.  However, ACES 2.0 has
 a built-in gamut mapper, so the LMTs do not apply any additional compression.
 
+### Using LMTs developed for ACES 1.3 with ACES 2.0
+
+LMTs developed for ACES 1.3 can be applicable also with ACES 2.0 when combined with the **C-ACES1.clf** ACES 1.3 colorimetric LMT for ACES 2.0.  For example, one could re-create the
+ACES1Looks **M-ARRI.clf** equivalent in ACES 2.0 by first applying the ACES2Looks **T-ARRI_Tone.clf**, followed by the **C-ACES1.clf** and then apply the ACES1Looks **C-ARRI.clf**.
+The end result should in large part match the look of **M-ARRI.clf** of ACES1Looks through ACES 2.0.  The match can be expected to differ with more saturated and brighter colors.
+
 ### Re-creating emulation LMT with colorimetric LMT
 
 All the emulation LMTs for ACES 2.0 are the concatenation of the Tone-curve LMT and the Colorimetric LMT.  You can always re-create the emulation by applying the LMTs separately.  For example,
@@ -92,6 +89,38 @@ gamut colors.
 Gamut compression can be used also creatively.  Since the colorimetric LMTs retain saturation over the entire luminance range they can retain also super saturated colors.  These colors may
 be undesired, too strong or cause clipping with some images.  In these cases gamut compression operator could be used before or after the colorimetric LMTs to achieve the desired look.  This
 issue with super saturated colors is generic to ACES 1.3 and not directly related to the LMTs.
+
+## LMT Cubes
+
+Internally the LMTs are ACEScct-log AP1-gamut cubes.
+
+![C-ACES1_LMT](/img/C-ACES1_LMT.png)
+
+## Images
+
+![M-ARRI](/img/M-ARRI_1.jpg)
+![ARRI ALF2](/img/ARRI_ALF2_1.jpg)
+
+![M-ARRI](/img/M-ARRI_2.jpg)
+![ARRI ALF2](/img/ARRI_ALF2_2.jpg)
+
+![M-ARRI_Classic](/img/M-ARRI_Classic_1.jpg)
+![ARRI ALF2](/img/ARRI_K1S1_1.jpg)
+
+![M-ARRI_Classic](/img/M-ARRI_Classic_2.jpg)
+![ARRI ALF2](/img/ARRI_K1S1_2.jpg)
+
+![M-RED](/img/M-RED_1.jpg)
+![RED IPP2](/img/RED_IPP2_1.jpg)
+
+![M-RED](/img/M-RED_2.jpg)
+![RED IPP2](/img/RED_IPP2_2.jpg)
+
+![M-SONY](/img/M-SONY_1.jpg)
+![SONY](/img/SONY_S-Gamut3_Cine_1.jpg)
+
+![M-SONY](/img/M-SONY_2.jpg)
+![SONY](/img/SONY_S-Gamut3_Cine_2.jpg)
 
 ## Resources
 
